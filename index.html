@@ -1,386 +1,2068 @@
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="cnr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fidelity Consulting · Budžet Q1 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fidelity Consulting — AI za poslovne odluke</title>
+<meta name="description" content="Fidelity Consulting pomaže kompanijama u Crnoj Gori da podatke, finansije i poslovne procese pretvore u precizne odluke, mjerljive uštede i bolju kontrolu poslovanja.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --bg:#FAFAF7;--s:#FFF;--s2:#F2F1ED;--s3:#E6E5E0;
-  --t:#111;--ts:#555;--th:#888;
-  --bd:rgba(0,0,0,0.08);
-  --r:#E8453A;--rbg:rgba(232,69,58,0.07);--rbar:rgba(232,69,58,0.22);
-  --g:#1A8C42;--gbg:rgba(26,140,66,0.07);--gbar:rgba(26,140,66,0.22);
-  --blue:#1D6FD1;--amber:#C47B10;--amberbg:rgba(196,123,16,0.07);
-  --serif:'Instrument Serif',Georgia,serif;
-  --sans:'Space Grotesk',system-ui,sans-serif;
-  --mono:'JetBrains Mono',monospace;
-  --brand:#E8625C;
-}
-@media(prefers-color-scheme:dark){:root{
-  --bg:#0A0A09;--s:#161614;--s2:#1E1E1B;--s3:#2A2A27;
-  --t:#EAE9E4;--ts:#9A9990;--th:#666;
-  --bd:rgba(255,255,255,0.08);
-  --r:#FF6B63;--rbg:rgba(255,107,99,0.1);--rbar:rgba(255,107,99,0.25);
-  --g:#4ADE6F;--gbg:rgba(74,222,111,0.08);--gbar:rgba(74,222,111,0.2);
-  --blue:#5BA3F5;--amber:#F5A623;--amberbg:rgba(245,166,35,0.1);
-  --brand:#E8625C;
-}}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--sans);background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased}
-::selection{background:rgba(232,98,92,0.15)}
+  /* ============ DESIGN TOKENS ============ */
+  :root {
+    --navy: #0A1F3D;
+    --navy-deep: #061429;
+    --graphite: #1A2332;
+    --gold: #C9A961;
+    --gold-soft: #E5D4A8;
+    --blue: #4A7BC8;
+    --blue-soft: #DCE7F6;
+    --white: #FFFFFF;
+    --off-white: #F7F8FA;
+    --paper: #FBFBFC;
+    --text: #1A2332;
+    --text-muted: #6B7385;
+    --text-faint: #9CA3AF;
+    --border: #E8EAEE;
+    --border-soft: #F0F1F4;
 
-/* TOPBAR */
-.topbar{display:flex;align-items:center;justify-content:space-between;max-width:920px;margin:0 auto;padding:20px 28px}
-.topbar-left{display:flex;align-items:center;gap:14px}
-.topbar-logo{width:40px;height:40px;border-radius:50%}
-.topbar-name{font-size:14px;font-weight:700;letter-spacing:0.3px}
-.topbar-right{font-size:12px;color:var(--th);font-family:var(--mono)}
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
 
-/* HERO */
-.hero{text-align:center;padding:56px 24px 52px;max-width:720px;margin:0 auto}
-.hero-tag{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--brand);border:1.5px solid var(--brand);border-radius:100px;padding:5px 16px;margin-bottom:24px}
-.hero h1{font-family:var(--serif);font-size:54px;font-weight:400;line-height:1.1;letter-spacing:-1px;margin-bottom:20px}
-.hero h1 em{font-style:italic;color:var(--brand)}
-.hero p{font-size:18px;line-height:1.6;color:var(--ts);max-width:540px;margin:0 auto}
+    --container: 1200px;
+    --radius: 4px;
+    --radius-lg: 8px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-.pg{max-width:880px;margin:0 auto;padding:0 28px 100px}
+  /* ============ RESET ============ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; background: none; border: none; cursor: pointer; color: inherit; }
 
-/* SECTIONS */
-.sec{margin-bottom:80px}
-.sec-h{text-align:center;max-width:620px;margin:0 auto 40px}
-.sec-h h2{font-family:var(--serif);font-size:36px;font-weight:400;line-height:1.15;letter-spacing:-0.5px;margin-bottom:10px}
-.sec-h h2 em{font-style:italic;color:var(--brand)}
-.sec-h p{font-size:15px;color:var(--ts);line-height:1.5}
+  /* ============ LAYOUT ============ */
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 768px) { .container { padding: 0 20px; } }
 
-/* PROSE - natural Luković voice */
-.prose{max-width:620px;margin:28px auto 0;font-size:17px;line-height:1.85;color:var(--ts)}
-.prose p{margin-bottom:18px;text-indent:1.5em}
-.prose p:first-child{text-indent:0}
-.prose p:first-child::first-letter{font-family:var(--serif);font-size:52px;font-weight:400;float:left;line-height:1;margin:4px 12px 0 0;color:var(--brand)}
-.prose p:last-child{margin-bottom:0}
-.prose strong{color:var(--t);font-weight:700}
-.prose em{font-family:var(--serif);font-style:italic;color:var(--t)}
+  section { padding: 120px 0; position: relative; }
+  @media (max-width: 768px) { section { padding: 72px 0; } }
 
-/* METRICS */
-.mets{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:56px}
-.mc{background:var(--s);border:1px solid var(--bd);border-radius:14px;padding:20px 18px;text-align:center;transition:transform .2s}
-.mc:hover{transform:translateY(-2px)}
-.mc-l{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--th);margin-bottom:6px}
-.mc-v{font-family:var(--mono);font-size:28px;font-weight:700;letter-spacing:-1px}
-.mc-n{font-size:12px;color:var(--th);margin-top:4px}
-.red{color:var(--r)}.grn{color:var(--g)}.blu{color:var(--blue)}.amb{color:var(--amber)}
+  .section-eyebrow {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
 
-/* COUNTER */
-.ctr-wrap{background:var(--s);border:1.5px solid var(--r);border-radius:18px;padding:44px 36px;text-align:center}
-.ctr-label{font-family:var(--mono);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--r);margin-bottom:10px}
-.ctr-val{font-family:var(--mono);font-size:58px;font-weight:700;color:var(--r);letter-spacing:-2px;font-variant-numeric:tabular-nums}
-.ctr-sub{font-size:13px;color:var(--th);margin-top:10px}
-.ctr-pills{display:flex;justify-content:center;gap:10px;margin-top:22px;flex-wrap:wrap}
-.pill{background:var(--rbg);border-radius:100px;padding:8px 20px;display:flex;align-items:baseline;gap:8px}
-.pill b{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--r)}
-.pill span{font-size:12px;color:var(--ts)}
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    max-width: 720px;
+    margin-bottom: 24px;
+  }
 
-/* RECEIPT */
-.rcp{max-width:380px;margin:0 auto;background:var(--s);border:1px solid var(--bd);border-radius:18px;padding:36px 32px;font-family:var(--mono);position:relative;overflow:hidden}
-.rcp::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--brand)}
-.rcp-h{text-align:center;margin-bottom:18px}
-.rcp-flag{font-size:28px;margin-bottom:4px}
-.rcp-t{font-size:14px;font-weight:700;letter-spacing:3px}
-.rcp-s{font-size:10px;color:var(--th);letter-spacing:1.5px;margin-top:2px}
-.rcp-ln{border-bottom:1px dashed var(--bd);margin:10px 0}
-.rcp-r{display:flex;justify-content:space-between;padding:5px 0;font-size:12.5px}
-.rcp-r.dm{color:var(--th)}
-.rcp-r.tot{font-weight:700;font-size:14px;padding:10px 0 4px}
-.rcp-r.rev{color:var(--g)}
-.rcp-r.def{font-weight:700;font-size:17px;color:var(--r);padding:10px 0}
-.rcp-note{font-size:9.5px;color:var(--th);text-align:center;margin:8px 0;line-height:1.5}
-.rcp-ft{font-size:9px;color:var(--th);text-align:center;font-family:var(--serif);font-style:italic;margin-top:8px}
+  .section-lead {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 640px;
+    margin-bottom: 64px;
+  }
 
-/* METAPHORS */
-.mg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.mc2{background:var(--s);border:1px solid var(--bd);border-radius:16px;padding:28px 16px;text-align:center;transition:transform .2s}
-.mc2:hover{transform:scale(1.04)}
-.mc2-i{font-size:36px;margin-bottom:10px}
-.mc2-n{font-family:var(--mono);font-size:32px;font-weight:700;letter-spacing:-1px}
-.mc2-t{font-size:12px;color:var(--ts);margin-top:4px;line-height:1.3}
+  /* ============ NAV ============ */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid transparent;
+    transition: var(--transition);
+  }
+  .nav.scrolled {
+    border-bottom-color: var(--border);
+    background: rgba(255, 255, 255, 0.95);
+  }
+  .nav-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  @media (max-width: 768px) { .nav-inner { padding: 16px 20px; } }
 
-/* WAFFLE */
-.waf{display:grid;grid-template-columns:repeat(20,1fr);gap:3px;max-width:580px;margin:0 auto 14px}
-.wc{aspect-ratio:1;border-radius:5px;transition:transform .2s,border-radius .2s}
-.wc:hover{transform:scale(1.4);border-radius:7px;z-index:2}
-.wfl{display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:center;font-size:11px;color:var(--ts)}
-.wfl-i{display:flex;align-items:center;gap:5px}
-.wfl-d{width:12px;height:12px;border-radius:4px}
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo-mark {
+    width: 28px; height: 28px;
+    border: 1.5px solid var(--navy);
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+  }
+  .logo-mark::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
 
-/* GAUGES */
-.gg{background:var(--s);border:1px solid var(--bd);border-radius:16px;padding:18px 12px}
-.gr{display:grid;grid-template-columns:148px 1fr 48px;align-items:center;gap:6px;margin-bottom:4px;padding:5px 8px;border-radius:8px;transition:background .12s}
-.gr:hover{background:var(--s2)}
-.gr-l{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.gr-t{height:18px;background:var(--s2);border-radius:9px;position:relative}
-.gr-f{height:100%;border-radius:9px}
-.gr-mk{position:absolute;top:-2px;bottom:-2px;width:2.5px;background:var(--g);border-radius:2px}
-.gr-mk span{position:absolute;top:-13px;font-size:8px;color:var(--g);font-family:var(--mono);transform:translateX(-50%)}
-.gr-p{font-family:var(--mono);font-size:12px;font-weight:700;text-align:right}
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  .nav-menu a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    position: relative;
+    transition: color var(--transition);
+  }
+  .nav-menu a:hover { color: var(--gold); }
+  .nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width var(--transition);
+  }
+  .nav-menu a:hover::after { width: 100%; }
 
-/* DIV BARS */
-.dw{background:var(--s);border:1px solid var(--bd);border-radius:16px;overflow:hidden}
-.dg{border-bottom:1px solid var(--bd)}.dg:last-child{border-bottom:none}
-.dg.cl .dc{display:none}
-.dp{display:grid;grid-template-columns:176px minmax(0,1fr) 44px 44px;align-items:center;gap:4px;height:38px;padding:0 14px;cursor:pointer;transition:background .12s}
-.dp:hover{background:var(--s2)}
-.ar{font-size:9px;color:var(--th);margin-right:4px;display:inline-block;transition:transform .2s}
-.dg.cl .ar{transform:rotate(-90deg)}
-.dc{display:grid;grid-template-columns:176px minmax(0,1fr) 44px 44px;align-items:center;gap:4px;height:28px;padding:0 14px 0 34px;border-top:1px solid var(--bd)}
-.dc4{padding-left:50px}
-.dn{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dc .dn{font-weight:400;color:var(--ts);font-size:11.5px}
-.bc{position:relative;height:100%}.bm{position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--bd)}
-.b{position:absolute;top:5px;bottom:5px;border-radius:5px}
-.b.n{background:var(--rbar);border-right:2.5px solid var(--r)}
-.b.p{background:var(--gbar);border-left:2.5px solid var(--g)}
-.bs{top:6px;bottom:6px;border-radius:3px}.bs.n{border-right-width:1.5px}.bs.p{border-left-width:1.5px}
-.bv{position:absolute;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:9.5px;font-weight:600;white-space:nowrap}
-.bv.n{color:var(--r)}.bv.p{color:var(--g)}
-.rp{text-align:right;font-family:var(--mono);font-size:10px;color:var(--th)}
-.ry{text-align:right;font-family:var(--mono);font-size:10px}
-.lgd{display:flex;gap:16px;justify-content:center;margin-bottom:14px;font-size:11px;color:var(--ts)}
-.lgd i{display:inline-block;width:12px;height:8px;border-radius:3px;margin-right:4px;vertical-align:middle}
-.ta{font-size:11px;color:var(--brand);cursor:pointer;border:none;background:none;font-family:var(--sans);padding:4px 12px;border-radius:100px;font-weight:600;transition:background .12s}
-.ta:hover{background:var(--rbg)}
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  .nav-cta:hover { background: var(--graphite); transform: translateY(-1px); }
+  .nav-cta:hover::after { display: none; }
 
-/* ORG TABLE */
-.otw{max-height:540px;overflow-y:auto;border:1px solid var(--bd);border-radius:16px;background:var(--s)}
-.ot{width:100%;border-collapse:collapse;font-size:12px}
-.ot th{font-family:var(--mono);font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--th);text-align:left;padding:10px;border-bottom:1px solid var(--bd);position:sticky;top:0;background:var(--s);z-index:1}
-.ot th:nth-child(n+3){text-align:right}
-.ot td{padding:6px 10px;border-bottom:1px solid var(--bd);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ot td:nth-child(n+3){text-align:right;font-family:var(--mono);font-size:11px}
-.ot tr:hover{background:var(--s2)}
-.ot td:first-child{max-width:210px;font-weight:500}
+  .nav-toggle { display: none; }
+  @media (max-width: 900px) {
+    .nav-menu { display: none; }
+    .nav-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+    }
+    .nav-toggle span {
+      width: 22px; height: 1.5px; background: var(--navy);
+    }
+  }
 
-/* MONTHLY */
-.mrow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.mcrd{background:var(--s);border:1px solid var(--bd);border-radius:14px;padding:18px 20px}
-.mcrd h3{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--th);margin-bottom:12px}
-.mbr{display:grid;grid-template-columns:30px 1fr 44px;align-items:center;gap:6px;margin-bottom:7px}
-.mbr span:first-child{font-family:var(--mono);font-size:11px;color:var(--ts)}
-.mbr span:last-child{font-family:var(--mono);font-size:12px;font-weight:700;text-align:right}
-.mbt{height:16px;background:var(--s2);border-radius:8px;overflow:hidden}
-.mbf{height:100%;border-radius:8px}
-.dbx{margin:10px 0 0;padding:16px 22px;background:var(--rbg);border:1.5px solid var(--r);border-radius:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
-.db-l{font-family:var(--mono);font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--r);margin-bottom:2px}
-.db-v{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--r))}
-.db-n{font-size:11px;color:var(--ts)}
+  /* ============ BUTTONS ============ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .btn-primary:hover {
+    background: var(--graphite);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -8px rgba(10, 31, 61, 0.3);
+  }
+  .btn-secondary {
+    color: var(--navy);
+    border: 1px solid var(--border);
+    background: var(--white);
+  }
+  .btn-secondary:hover {
+    border-color: var(--navy);
+  }
+  .btn-arrow {
+    width: 16px; height: 16px;
+    transition: transform var(--transition);
+  }
+  .btn:hover .btn-arrow { transform: translateX(4px); }
 
-.ft{max-width:880px;margin:0 auto;padding:32px 28px 0;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--th)}
-.ft-logo{width:24px;height:24px;border-radius:50%;margin-right:8px;vertical-align:middle}
+  /* ============ HERO ============ */
+  .hero {
+    padding: 180px 0 120px;
+    position: relative;
+    background: linear-gradient(180deg, #FBFBFC 0%, #FFFFFF 100%);
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(10, 31, 61, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10, 31, 61, 0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse at top right, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at top right, black 30%, transparent 70%);
+  }
+  .hero-content {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  @media (max-width: 960px) {
+    .hero-content { grid-template-columns: 1fr; gap: 56px; }
+    .hero { padding: 140px 0 80px; }
+  }
 
-@media(max-width:700px){
-  .hero h1{font-size:34px}.mets{grid-template-columns:repeat(2,1fr)}
-  .sec-h h2{font-size:26px}.mg{grid-template-columns:repeat(2,1fr)}
-  .rcp{max-width:100%}.mrow{grid-template-columns:1fr}.dbx{grid-template-columns:1fr}
-  .dp,.dc{grid-template-columns:115px minmax(0,1fr) 36px 36px}
-  .ctr-val{font-size:38px}.hero{padding:36px 18px 32px}.pg{padding:0 14px 60px}
-  .topbar{padding:14px 16px}
-}
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--navy);
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+  }
+
+  .hero-lead {
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 540px;
+    margin-bottom: 40px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+
+  .hero-proof {
+    display: flex;
+    gap: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  @media (max-width: 600px) { .hero-proof { gap: 24px; flex-wrap: wrap; } }
+  .hero-proof-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-proof-num {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .hero-proof-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Hero visual — dashboard mockup */
+  .hero-visual {
+    position: relative;
+  }
+  .dashboard-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: 0 24px 48px -16px rgba(10, 31, 61, 0.12), 0 0 0 1px rgba(10, 31, 61, 0.02);
+  }
+  .dashboard-card + .dashboard-card {
+    margin-top: 20px;
+  }
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+  .dashboard-title {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .dashboard-value {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-top: 8px;
+  }
+  .dashboard-delta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: #2D7A4B;
+    background: #EAF5EE;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .dashboard-delta.negative { color: #B8341B; background: #FCEEEB; }
+
+  .chart-svg { width: 100%; height: auto; }
+
+  .floating-stat {
+    position: absolute;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    box-shadow: 0 16px 32px -12px rgba(10, 31, 61, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .floating-stat.top { top: -24px; right: -24px; }
+  .floating-stat.bottom { bottom: -16px; left: -24px; }
+  @media (max-width: 960px) {
+    .floating-stat.top { right: 0; }
+    .floating-stat.bottom { left: 0; }
+  }
+  .floating-stat-icon {
+    width: 36px; height: 36px;
+    background: var(--blue-soft);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue);
+  }
+  .floating-stat-text { font-size: 13px; color: var(--text); }
+  .floating-stat-text strong { display: block; color: var(--navy); font-weight: 600; }
+
+  /* ============ TRUST STRIP ============ */
+  .trust {
+    padding: 36px 0;
+    background: var(--off-white);
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .trust-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+    flex-wrap: wrap;
+  }
+  .trust-label {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    font-weight: 500;
+  }
+  .trust-items {
+    display: flex;
+    gap: 56px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .trust-item {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: -0.005em;
+    opacity: 0.7;
+  }
+
+  /* ============ ABOUT ============ */
+  .about {
+    background: var(--white);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+    align-items: center;
+  }
+  @media (max-width: 960px) {
+    .about-grid { grid-template-columns: 1fr; gap: 56px; }
+  }
+
+  .about-text p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .about-text p:first-of-type {
+    font-size: 19px;
+    color: var(--text);
+    font-weight: 400;
+  }
+  .about-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .about-pillar {
+    padding: 24px;
+    background: var(--off-white);
+    border-radius: var(--radius);
+    border-left: 2px solid var(--gold);
+  }
+  .about-pillar-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .about-pillar-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  /* About visual */
+  .about-visual {
+    position: relative;
+    aspect-ratio: 1 / 1.05;
+    background: linear-gradient(135deg, #F7F8FA 0%, #FFFFFF 100%);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 40px;
+    overflow: hidden;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(10, 31, 61, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10, 31, 61, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .about-orbit {
+    position: relative;
+    z-index: 1;
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ============ SERVICES ============ */
+  .services {
+    background: var(--off-white);
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  @media (max-width: 960px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .services-grid { grid-template-columns: 1fr; } }
+
+  .service-card {
+    background: var(--white);
+    padding: 40px 36px;
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+  }
+  .service-card:hover {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .service-card:hover .service-icon { color: var(--gold); }
+  .service-card:hover .service-title { color: var(--white); }
+  .service-card:hover .service-desc { color: rgba(255, 255, 255, 0.7); }
+  .service-card:hover .service-arrow { opacity: 1; transform: translateX(0); }
+
+  .service-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+  }
+  .service-card:hover .service-num { color: rgba(255, 255, 255, 0.4); }
+
+  .service-icon {
+    width: 36px; height: 36px;
+    color: var(--navy);
+    margin-bottom: 20px;
+    transition: var(--transition);
+  }
+
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+    transition: var(--transition);
+  }
+  .service-desc {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    transition: var(--transition);
+    flex: 1;
+  }
+  .service-arrow {
+    position: absolute;
+    top: 36px; right: 36px;
+    width: 20px; height: 20px;
+    color: var(--gold);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: var(--transition);
+  }
+
+  /* ============ WHY US ============ */
+  .why {
+    background: var(--navy);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .why::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse at bottom left, black 20%, transparent 60%);
+  }
+  .why-container { position: relative; z-index: 1; }
+  .why .section-eyebrow { color: var(--gold-soft); }
+  .why .section-eyebrow::before { background: var(--gold-soft); }
+  .why .section-title { color: var(--white); }
+  .why .section-lead { color: rgba(255, 255, 255, 0.7); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  @media (max-width: 720px) { .why-grid { grid-template-columns: 1fr; } }
+
+  .why-item {
+    background: var(--navy);
+    padding: 40px 32px;
+  }
+  .why-item-num {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .why-item-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+  .why-item-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  /* ============ PROCESS ============ */
+  .process {
+    background: var(--white);
+  }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 6%; right: 6%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border) 0%, var(--gold) 50%, var(--border) 100%);
+    z-index: 0;
+  }
+  @media (max-width: 900px) {
+    .process-steps { grid-template-columns: 1fr; gap: 32px; }
+    .process-steps::before { display: none; }
+  }
+
+  .process-step {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  @media (max-width: 900px) {
+    .process-step { text-align: left; display: flex; gap: 20px; align-items: flex-start; }
+  }
+
+  .process-num {
+    width: 56px; height: 56px;
+    margin: 0 auto 24px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    transition: var(--transition);
+  }
+  .process-step:hover .process-num {
+    background: var(--navy);
+    color: var(--gold);
+    border-color: var(--navy);
+  }
+  @media (max-width: 900px) {
+    .process-num { margin: 0; flex-shrink: 0; }
+  }
+
+  .process-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .process-desc {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* ============ SOLUTIONS ============ */
+  .solutions {
+    background: var(--off-white);
+  }
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 960px) { .solutions-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .solutions-grid { grid-template-columns: 1fr; } }
+
+  .solution-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .solution-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px -16px rgba(10, 31, 61, 0.12);
+    border-color: var(--gold);
+  }
+  .solution-mini-chart {
+    height: 80px;
+    background: linear-gradient(180deg, var(--off-white) 0%, var(--white) 100%);
+    border-radius: var(--radius);
+    padding: 12px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .solution-title {
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .solution-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    flex: 1;
+  }
+  .solution-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .solution-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  /* ============ SECTORS ============ */
+  .sectors {
+    background: var(--white);
+  }
+  .sectors-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 900px) { .sectors-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .sector {
+    padding: 32px 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-align: center;
+    transition: var(--transition);
+    cursor: default;
+  }
+  .sector:hover {
+    border-color: var(--navy);
+    background: var(--off-white);
+  }
+  .sector-icon {
+    width: 32px; height: 32px;
+    color: var(--gold);
+    margin: 0 auto 16px;
+  }
+  .sector-name {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: -0.005em;
+  }
+
+  /* ============ CTA BANNER ============ */
+  .cta-banner {
+    background: var(--navy);
+    padding: 120px 0;
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 50% 50%, rgba(201, 169, 97, 0.08) 0%, transparent 60%);
+  }
+  .cta-banner-inner { position: relative; }
+  .cta-quote {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    max-width: 880px;
+    margin: 0 auto 40px;
+  }
+  .cta-quote em {
+    color: var(--gold);
+    font-style: italic;
+  }
+  .cta-banner .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  .cta-banner .btn-primary:hover {
+    background: var(--gold-soft);
+    color: var(--navy);
+  }
+
+  /* ============ CONTACT ============ */
+  .contact { background: var(--white); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 80px;
+    align-items: flex-start;
+  }
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  .contact-info-list {
+    margin-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  .contact-info-item {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .contact-info-icon {
+    width: 20px; height: 20px;
+    color: var(--gold);
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .contact-info-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .contact-info-value {
+    font-size: 15px;
+    color: var(--text);
+  }
+
+  .contact-form {
+    background: var(--off-white);
+    padding: 48px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+  }
+  @media (max-width: 600px) { .contact-form { padding: 32px 24px; } }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+  .form-field {
+    margin-bottom: 20px;
+  }
+  .form-field label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--white);
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text);
+    transition: var(--transition);
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(10, 31, 61, 0.08);
+  }
+  .form-field textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .form-submit {
+    width: 100%;
+    margin-top: 8px;
+    justify-content: center;
+  }
+
+  .form-note {
+    font-size: 12px;
+    color: var(--text-faint);
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    background: var(--navy-deep);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 64px 0 32px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 56px;
+    margin-bottom: 56px;
+  }
+  @media (max-width: 760px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+
+  .footer-brand .logo { color: var(--white); margin-bottom: 16px; }
+  .footer-brand .logo-mark { border-color: var(--white); }
+  .footer-tagline {
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 320px;
+  }
+
+  .footer-col-title {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  .footer-col a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+
+  /* ============ ANIMATIONS ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div class="topbar-left">
-    <img src="data:image/jpeg;base64,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" class="topbar-logo" alt="Fidelity Consulting">
-    <span class="topbar-name">Fidelity Consulting</span>
+<!-- ==================== NAV ==================== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark"></span>
+      Fidelity Consulting
+    </a>
+    <div class="nav-menu">
+      <a href="#about">O nama</a>
+      <a href="#services">Usluge</a>
+      <a href="#process">Kako radimo</a>
+      <a href="#solutions">Rješenja</a>
+      <a href="#sectors">Sektori</a>
+    </div>
+    <a href="#contact" class="nav-cta">
+      Zakažite konsultacije
+      <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 8h10M9 4l4 4-4 4"/>
+      </svg>
+    </a>
+    <button class="nav-toggle" aria-label="Meni">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <div class="topbar-right">Q1 2026 · Fiskalna analiza</div>
-</div>
+</nav>
 
-<div class="hero">
-  <div class="hero-tag">Budžet Crne Gore · Januar — Mart 2026</div>
-  <h1>Kako Crna Gora <em>troši</em> vaš novac</h1>
-  <p>Kompletna analiza budžetskog izvršenja kroz četiri klasifikacije. Petsto jedanaest stavki. Ni jedna izlika.</p>
-</div>
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text reveal">
+        <div class="hero-eyebrow">Fidelity Consulting · Podgorica</div>
+        <h1>AI za poslovne odluke.<br><em>Ne za prezentacije.</em></h1>
+        <p class="hero-lead">
+          Pomažemo kompanijama u Crnoj Gori da podatke iz ERP-a, računovodstva i prodaje pretvore u precizne odluke, mjerljive uštede i bolju kontrolu poslovanja.
+        </p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">
+            Zakažite konsultacije
+            <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 8h10M9 4l4 4-4 4"/>
+            </svg>
+          </a>
+          <a href="#services" class="btn btn-secondary">Pogledajte usluge</a>
+        </div>
+        <div class="hero-proof">
+          <div class="hero-proof-item">
+            <span class="hero-proof-num">15+</span>
+            <span class="hero-proof-label">godina poslovnog<br>savjetovanja</span>
+          </div>
+          <div class="hero-proof-item">
+            <span class="hero-proof-num">8</span>
+            <span class="hero-proof-label">sektora pokriveno<br>u regionu</span>
+          </div>
+          <div class="hero-proof-item">
+            <span class="hero-proof-num">100%</span>
+            <span class="hero-proof-label">mjerljivih<br>rezultata</span>
+          </div>
+        </div>
+      </div>
 
-<div class="pg">
+      <div class="hero-visual reveal">
+        <div class="dashboard-card">
+          <div class="dashboard-header">
+            <div>
+              <div class="dashboard-title">Cash flow · narednih 60 dana</div>
+              <div class="dashboard-value">€ 487.320</div>
+            </div>
+            <div class="dashboard-delta">+12.4%</div>
+          </div>
+          <svg class="chart-svg" viewBox="0 0 360 120" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="grad1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#4A7BC8" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#4A7BC8" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,90 L30,82 L60,88 L90,70 L120,75 L150,60 L180,65 L210,45 L240,52 L270,38 L300,42 L330,28 L360,32 L360,120 L0,120 Z" fill="url(#grad1)"/>
+            <path d="M0,90 L30,82 L60,88 L90,70 L120,75 L150,60 L180,65 L210,45 L240,52 L270,38 L300,42 L330,28 L360,32" fill="none" stroke="#4A7BC8" stroke-width="1.5"/>
+            <line x1="0" y1="60" x2="360" y2="60" stroke="#E8EAEE" stroke-dasharray="2 4" stroke-width="0.5"/>
+            <circle cx="330" cy="28" r="3" fill="#C9A961"/>
+          </svg>
+        </div>
 
-<div class="mets">
-  <div class="mc"><div class="mc-l">Prihodi</div><div class="mc-v grn">635,4M</div><div class="mc-n">+4,3% vs plan</div></div>
-  <div class="mc"><div class="mc-l">Rashodi</div><div class="mc-v amb">759,4M</div><div class="mc-n">91,5% plana</div></div>
-  <div class="mc"><div class="mc-l">Deficit</div><div class="mc-v red">−124M</div><div class="mc-n">44,6% godišnjeg</div></div>
-  <div class="mc"><div class="mc-l">Kamate</div><div class="mc-v red">71,8M</div><div class="mc-n">215% plana</div></div>
-</div>
+        <div class="dashboard-card" style="margin-top: 16px;">
+          <div class="dashboard-header">
+            <div>
+              <div class="dashboard-title">Profitabilnost po sektoru</div>
+            </div>
+          </div>
+          <svg class="chart-svg" viewBox="0 0 360 80" preserveAspectRatio="none">
+            <rect x="0" y="20" width="65" height="60" fill="#0A1F3D" rx="2"/>
+            <rect x="75" y="35" width="65" height="45" fill="#0A1F3D" opacity="0.7" rx="2"/>
+            <rect x="150" y="10" width="65" height="70" fill="#C9A961" rx="2"/>
+            <rect x="225" y="42" width="65" height="38" fill="#0A1F3D" opacity="0.5" rx="2"/>
+            <rect x="300" y="28" width="60" height="52" fill="#0A1F3D" opacity="0.6" rx="2"/>
+          </svg>
+          <div style="display: flex; justify-content: space-between; margin-top: 8px; font-family: var(--font-mono); font-size: 10px; color: var(--text-faint);">
+            <span>Trg.</span><span>Prozv.</span><span>Hotel.</span><span>Distr.</span><span>Uslg.</span>
+          </div>
+        </div>
 
-<!-- COUNTER -->
-<div class="sec">
-<div class="sec-h"><h2>Deficit <em>ne spava</em></h2><p>Dok ovo čitate, dug raste. Računajte s nama.</p></div>
-<div class="ctr-wrap">
-  <div class="ctr-label">Deficit od otvaranja stranice</div>
-  <div class="ctr-val" id="ctr">0,00 €</div>
-  <div class="ctr-sub">Na osnovu Q1 tempa: 124 miliona za 90 dana</div>
-  <div class="ctr-pills">
-    <div class="pill"><b>957 €</b><span>u minutu</span></div>
-    <div class="pill"><b>57.426 €</b><span>na sat</span></div>
-    <div class="pill"><b>1,38M</b><span>dnevno</span></div>
+        <div class="floating-stat top">
+          <div class="floating-stat-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div class="floating-stat-text">
+            <strong>14 modela</strong>
+            u produkciji
+          </div>
+        </div>
+
+        <div class="floating-stat bottom">
+          <div class="floating-stat-icon" style="background: #FCEEEB; color: #B8341B;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/>
+            </svg>
+          </div>
+          <div class="floating-stat-text">
+            <strong>Rano upozorenje</strong>
+            aktivirano · 3 stavke
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TRUST ==================== -->
+<div class="trust">
+  <div class="container">
+    <div class="trust-inner">
+      <div class="trust-label">Za one koji vode</div>
+      <div class="trust-items">
+        <span class="trust-item">CEO</span>
+        <span class="trust-item">CFO</span>
+        <span class="trust-item">Vlasnici</span>
+        <span class="trust-item">Direktori operacija</span>
+        <span class="trust-item">Menadžeri prodaje</span>
+      </div>
+    </div>
   </div>
 </div>
-<div class="prose">
-<p>Naravno, deficit ne radi tako — ne kaplje kao slavina nego pljušti kao cijev koja je davno pukla u podrumu dok stanari iznad raspravljaju treba li zamijeniti sijalicu u hodniku. Ali aritmetika je bezobrazno jednostavna. Svaki sat koji protekne dok Vlada zasjeda, dok se pišu strategije, dok se dogovaraju koalicioni partneri o rasporedu fotelja — svaki od tih sati proizvede rupu od pedeset sedam hiljada eura.</p>
-<p>Neko će reći: ali linearno računanje ne važi, ljeto donosi turiste, PDV raste. Tačno. Ali ljeto donosi i trinaestu penziju, predizborne poklone, i onu čuvenu naviku da se u decembru potroši sve što je „ušteđeno" od januara do novembra. <strong>Sezonalnost spašava samo one koji je poštuju.</strong></p>
-</div>
-</div>
 
-<!-- RECEIPT -->
-<div class="sec">
-<div class="sec-h"><h2>Vaš lični <em>račun</em></h2><p>Budžet podijeljen na svakog od 620 hiljada građana. Ovo je vaš dio za tri mjeseca.</p></div>
-<div class="rcp">
-  <div class="rcp-h"><div class="rcp-flag">🇲🇪</div><div class="rcp-t">CRNA GORA</div><div class="rcp-s">Fiskalni račun · Q1 2026</div></div>
-  <div class="rcp-ln"></div>
-  <div class="rcp-r"><span>Socijalna zaštita</span><span>469 €</span></div>
-  <div class="rcp-r"><span>Opšte javne službe</span><span>327 €</span></div>
-  <div class="rcp-r"><span>Zdravstvo</span><span>197 €</span></div>
-  <div class="rcp-r"><span>Obrazovanje</span><span>128 €</span></div>
-  <div class="rcp-r"><span>Ekonomski poslovi</span><span>95 €</span></div>
-  <div class="rcp-r"><span>Javni red</span><span>79 €</span></div>
-  <div class="rcp-r"><span>Odbrana</span><span>48 €</span></div>
-  <div class="rcp-r dm"><span>Sport i kultura</span><span>16 €</span></div>
-  <div class="rcp-r dm"><span>Životna sredina</span><span>5 €</span></div>
-  <div class="rcp-r dm"><span>Stanovanje</span><span>2 €</span></div>
-  <div class="rcp-ln"></div>
-  <div class="rcp-r tot"><span>RASHODI</span><span>1.225 €</span></div>
-  <div class="rcp-r rev"><span>Vaši porezi i doprinosi</span><span>1.025 €</span></div>
-  <div class="rcp-ln"></div>
-  <div class="rcp-r def"><span>DUGUJETE</span><span>−200 €</span></div>
-  <div class="rcp-note">Od toga na kamate: 116 € po glavi<br>Na istraživanje i razvoj: 1,70 €</div>
-  <div class="rcp-ln"></div>
-  <div class="rcp-ft">Hvala na saradnji. Prigovori se ne razmatraju.</div>
-</div>
-<div class="prose">
-<p>Račun, dakle, ne laže. Za devedeset dana — od Nove godine do proljeća — svaki građanin, uključujući bebe, penzionere i one koji sada prvi put čuju za budžetsku klasifikaciju, potrošio je hiljadu dvjesta dvadeset pet eura kroz državnu kasu. A uplatio hiljadu dvadeset pet. Razliku od dvjesta eura država je pozajmila u vaše ime. Od koga i pod kojim uslovima — pogledajte stavku „kamate".</p>
-<p>Obratite pažnju na dno računa. Na životnu sredinu — pet eura. Na nauku i istraživanje — euro i sedamdeset centi. <strong>U jednoj državi na Mediteranu, sa Skadarskim jezerom, Durmitorom i Bokom — pet eura godišnje na životnu sredinu.</strong> Za te pare ne možete ni očistiti jednu plažu u Ulcinju nakon vikenda.</p>
-</div>
-</div>
+<!-- ==================== ABOUT ==================== -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-eyebrow">O nama</div>
+        <h2 class="section-title">Konsultanti koji razumiju i finansije i tehnologiju.</h2>
+        <p>
+          Fidelity Consulting povezuje tri discipline koje rijetko idu zajedno: dubinsko poslovno savjetovanje, finansijsku analizu i primjenu vještačke inteligencije.
+        </p>
+        <p>
+          Radimo sa vlasnicima, direktorima i finansijskim rukovodiocima koji znaju da im podaci kriju odgovore — ali nemaju ni vrijeme ni alate da ih izvuku. Naša uloga nije da prodajemo tehnologiju. Naša uloga je da donesemo red, mjerljivost i kontrolu u poslovanje.
+        </p>
+        <p>
+          Ne pravimo generička AI rješenja. Pravimo konkretne modele za konkretne probleme — za vašu strukturu troškova, vaše kupce, vaš ERP, vašu industriju.
+        </p>
 
-<!-- METAPHORS -->
-<div class="sec">
-<div class="sec-h"><h2>71,8 miliona <em>na kamate</em></h2><p>Koliko to zapravo košta — u školama, bolnicama i putevima.</p></div>
-<div class="mg">
-  <div class="mc2"><div class="mc2-i">🏗️</div><div class="mc2-n">7 km</div><div class="mc2-t">autoputa</div></div>
-  <div class="mc2"><div class="mc2-i">🏫</div><div class="mc2-n">36</div><div class="mc2-t">novih škola</div></div>
-  <div class="mc2"><div class="mc2-i">🏥</div><div class="mc2-n">144</div><div class="mc2-t">ambulante</div></div>
-  <div class="mc2"><div class="mc2-i">👩‍⚕️</div><div class="mc2-n">79.260</div><div class="mc2-t">prosječnih plata</div></div>
-  <div class="mc2"><div class="mc2-i">🌳</div><div class="mc2-n">25×</div><div class="mc2-t">budžet za živ. sredinu</div></div>
-  <div class="mc2"><div class="mc2-i">🔬</div><div class="mc2-n">66×</div><div class="mc2-t">sva ulaganja u I&R</div></div>
-</div>
-<div class="prose">
-<p>Postoji posebna vrsta cinizma u tome kada država plati sedamdeset dva miliona eura kamata za tri mjeseca, a onda u istom periodu na istraživanje i razvoj u zdravstvu odvoji milion i osam stotina hiljada. To je odnos šezdeset šest prema jedan. Za svaki euro koji pokušava da pronađe lijek, šezdeset šest eura odlazi bankaru koji je lijek odavno pronašao — za sebe.</p>
-<p>Sport i kultura — istraživanje i razvoj: ostvarenje 2,3% plana. Dva zarez tri. Za tu cifru ne možete finansirati ni jednog studenta na jednom seminaru o jednoj temi u jednom gradu. Ali papir postoji, program je napisan, i neko je potpisao plan u kojem stoji da će se „podsticati inovativnost u kreativnim industrijama". Potpis je koštao više od realizacije.</p>
-<p>Ministarstvo odbrane, međutim, troši 158% plana. Brani nas. Od koga — to je, izgleda, vojna tajna.</p>
-</div>
-</div>
+        <div class="about-pillars">
+          <div class="about-pillar">
+            <div class="about-pillar-title">Finansije</div>
+            <div class="about-pillar-label">Controlling, analiza, izvještavanje</div>
+          </div>
+          <div class="about-pillar">
+            <div class="about-pillar-title">Procesi</div>
+            <div class="about-pillar-label">Mapiranje, optimizacija, automatizacija</div>
+          </div>
+          <div class="about-pillar">
+            <div class="about-pillar-title">Podaci</div>
+            <div class="about-pillar-label">ERP, BI, dashboard-i, rana upozorenja</div>
+          </div>
+          <div class="about-pillar">
+            <div class="about-pillar-title">AI</div>
+            <div class="about-pillar-label">Asistenti, analitika, detekcija anomalija</div>
+          </div>
+        </div>
+      </div>
 
-<!-- WAFFLE -->
-<div class="sec">
-<div class="sec-h"><h2>100 kvadrata <em>vašeg novca</em></h2><p>Svaki kvadrat je 7,6 miliona eura. Nađite nauku. Nađite životnu sredinu.</p></div>
-<div class="waf" id="waf"></div>
-<div class="wfl" id="wfl"></div>
-<div class="prose">
-<p>Ova slika je cijeli budžet. Trideset pet kvadrata gore — to je socijalna zaštita, penzije, pomoć. Dvadeset sedam kvadrata — to su „opšte javne službe", od kojih je dobar dio kamata. Šesnaest za zdravstvo. Deset za obrazovanje. Četiri za odbranu. Životna sredina i nauka? Ne vide se. Zaista — pokušajte da ih nađete.</p>
-<p>Neko bi rekao: pa normalno, penzije su najveća stavka svuda u Evropi. Jeste. Samo što u Evropi pored tih penzija postoji i moderna infrastruktura, i funkcionalan zdravstveni sistem, i univerziteti na koje studenti dolaze umjesto da odlaze sa njih. <strong>Problem crnogorskog budžeta nije u tome što je socijala velika — nego u tome što je sve ostalo mikro.</strong></p>
-</div>
-</div>
+      <div class="about-visual reveal">
+        <div class="about-orbit">
+          <svg viewBox="0 0 400 400" style="width: 100%; height: 100%; position: relative; z-index: 1;">
+            <!-- Outer rings -->
+            <circle cx="200" cy="200" r="180" fill="none" stroke="#E8EAEE" stroke-width="1"/>
+            <circle cx="200" cy="200" r="130" fill="none" stroke="#E8EAEE" stroke-width="1" stroke-dasharray="3 6"/>
+            <circle cx="200" cy="200" r="80" fill="none" stroke="#C9A961" stroke-width="1" opacity="0.4"/>
 
-<!-- GAUGES -->
-<div class="sec">
-<div class="sec-h"><h2>Brzinomjer <em>potrošnje</em></h2><p>Zelena linija je na 25% — koliko bi trebalo potrošiti za Q1 od godišnjeg plana. Ko je prešao?</p></div>
-<div class="gg" id="gg"></div>
-<div class="prose">
-<p>Pogledajte vrh: Otplata obaveza iz prethodnog perioda — 111%. Potrošili su cijeli godišnji plan za tri mjeseca i nastavili. Kamate na 41%. Kupovina hartija od vrijednosti na 43%. To su stavke koje ne čekaju, ne pregovaraju, ne znaju za „fiskalnu konsolidaciju". Rok je rok.</p>
-<p>A dno? Tekuće održavanje 6,8%. Rezerve 1,5%. Rashodi za usluge 13,7%. Država ne održava ono što ima. Ne čuva rezerve za krizne situacije. Ne plaća usluge koje je naručila. Ali redovno i tačno — do posljednjeg centa — plaća kamate i otplaćuje dugove. <strong>Crnogorski budžet nije program razvoja. To je raspored otplate.</strong></p>
-</div>
-</div>
+            <!-- Center -->
+            <circle cx="200" cy="200" r="50" fill="#0A1F3D"/>
+            <text x="200" y="195" text-anchor="middle" fill="#C9A961" font-family="Fraunces, serif" font-size="13" font-weight="500" font-style="italic">Fidelity</text>
+            <text x="200" y="212" text-anchor="middle" fill="#fff" font-family="Inter" font-size="9" letter-spacing="2">CONSULTING</text>
 
-<!-- MONTHLY -->
-<div class="sec">
-<div class="sec-h"><h2>Tri mjeseca, <em>tri deficita</em></h2><p>Prihodi i rashodi, mjesec po mjesec.</p></div>
-<div class="mrow">
-  <div class="mcrd"><h3>Prihodi (mil €)</h3><div id="rb"></div></div>
-  <div class="mcrd"><h3>Rashodi (mil €)</h3><div id="eb"></div></div>
-</div>
-<div class="dbx">
-  <div><div class="db-l">Deficit Q1</div><div class="db-v" style="color:var(--r)">−124M</div><div class="db-n">Rashodi veći 16,3%</div></div>
-  <div><div class="db-l">Projekcija</div><div class="db-v" style="color:var(--r)">~496M</div><div class="db-n">Plan: 278M</div></div>
-  <div><div class="db-l">Primarni def.</div><div class="db-v" style="color:var(--r)">−52M</div><div class="db-n">I bez kamata — minus</div></div>
-</div>
-</div>
+            <!-- Outer nodes -->
+            <g>
+              <circle cx="200" cy="20" r="22" fill="#fff" stroke="#E8EAEE"/>
+              <text x="200" y="25" text-anchor="middle" fill="#0A1F3D" font-family="Inter" font-size="10" font-weight="600">ERP</text>
+            </g>
+            <g>
+              <circle cx="380" cy="200" r="22" fill="#fff" stroke="#E8EAEE"/>
+              <text x="380" y="205" text-anchor="middle" fill="#0A1F3D" font-family="Inter" font-size="10" font-weight="600">CFO</text>
+            </g>
+            <g>
+              <circle cx="200" cy="380" r="22" fill="#fff" stroke="#E8EAEE"/>
+              <text x="200" y="385" text-anchor="middle" fill="#0A1F3D" font-family="Inter" font-size="10" font-weight="600">CRM</text>
+            </g>
+            <g>
+              <circle cx="20" cy="200" r="22" fill="#fff" stroke="#E8EAEE"/>
+              <text x="20" y="205" text-anchor="middle" fill="#0A1F3D" font-family="Inter" font-size="10" font-weight="600">OPS</text>
+            </g>
 
-<!-- FUNKCIONALNA -->
-<div class="sec">
-<div class="sec-h"><h2>Čemu služi <em>potrošnja</em></h2><p>Funkcionalna klasifikacija: 10 klasa, sve podstavke. Kliknite za detalje.</p></div>
-<div class="lgd"><span><i style="background:var(--rbar);border-right:2px solid var(--r)"></i>Ispod plana</span><span><i style="background:var(--gbar);border-left:2px solid var(--g)"></i>Iznad plana</span><span style="margin-left:auto"><button class="ta" onclick="tg('fk')">± sve</button></span></div>
-<div id="fk" class="dw"></div>
-</div>
+            <!-- Inner orbit nodes -->
+            <g>
+              <circle cx="200" cy="70" r="6" fill="#C9A961"/>
+              <circle cx="330" cy="200" r="6" fill="#4A7BC8"/>
+              <circle cx="200" cy="330" r="6" fill="#C9A961"/>
+              <circle cx="70" cy="200" r="6" fill="#4A7BC8"/>
+            </g>
 
-<!-- PROGRAMSKA -->
-<div class="sec">
-<div class="sec-h"><h2>Koji programi <em>kasne</em></h2><p>12 programa sa potprogramima. Jedanaest u minusu.</p></div>
-<div class="lgd"><span><i style="background:var(--rbar);border-right:2px solid var(--r)"></i>Ispod plana</span><span><i style="background:var(--gbar);border-left:2px solid var(--g)"></i>Iznad plana</span><span style="margin-left:auto"><button class="ta" onclick="tg('pk')">± sve</button></span></div>
-<div id="pk" class="dw"></div>
-</div>
+            <!-- Data lines -->
+            <line x1="200" y1="42" x2="200" y2="150" stroke="#C9A961" stroke-width="1" opacity="0.5" stroke-dasharray="2 3"/>
+            <line x1="358" y1="200" x2="250" y2="200" stroke="#4A7BC8" stroke-width="1" opacity="0.5" stroke-dasharray="2 3"/>
+            <line x1="200" y1="358" x2="200" y2="250" stroke="#C9A961" stroke-width="1" opacity="0.5" stroke-dasharray="2 3"/>
+            <line x1="42" y1="200" x2="150" y2="200" stroke="#4A7BC8" stroke-width="1" opacity="0.5" stroke-dasharray="2 3"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- ORGANIZACIONA -->
-<div class="sec">
-<div class="sec-h"><h2>Ko <em>troši</em></h2><p>Svih 98 potrošačkih jedinica — od Fonda za obeštećenje do Ministarstva finansija.</p></div>
-<div class="otw"><table class="ot" id="ot"></table></div>
-</div>
+<!-- ==================== SERVICES ==================== -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="reveal" style="text-align: center; margin-bottom: 72px;">
+      <div class="section-eyebrow" style="justify-content: center;">Naše usluge</div>
+      <h2 class="section-title" style="margin: 0 auto 24px;">Šest oblasti u kojima isporučujemo mjerljive rezultate.</h2>
+      <p class="section-lead" style="margin: 0 auto;">
+        Svaka usluga je proizvod naše prakse — ne teorije. Razvijena na stvarnim poslovnim problemima, prilagodljiva vašoj veličini i industriji.
+      </p>
+    </div>
 
-</div>
+    <div class="services-grid reveal">
+      <!-- Service 1 -->
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <path d="M9 9h6v6H9z"/>
+          <path d="M3 9h6M3 15h6M9 3v6M9 15v6M15 3v6M15 15v6M15 9h6M15 15h6"/>
+        </svg>
+        <h3 class="service-title">AI u poslovnim procesima</h3>
+        <p class="service-desc">Automatizacija analiza, izvještaja, internih procedura, kontrole dokumenata i ponavljajućih odluka. Manje rutinskog rada, više vremena za strategiju.</p>
+        <svg class="service-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 10h12M12 6l4 4-4 4"/>
+        </svg>
+      </div>
 
-<footer class="ft">
-  <div><img src="data:image/jpeg;base64,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" class="ft-logo" alt="">Fidelity Consulting d.o.o. · Podgorica</div>
-  <span>Izvor: Ministarstvo finansija CG · GDDS · Mart 2026</span>
+      <!-- Service 2 -->
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 3v18h18"/>
+          <path d="M7 14l4-4 4 4 5-5"/>
+          <circle cx="20" cy="9" r="1.5" fill="currentColor"/>
+        </svg>
+        <h3 class="service-title">Finansijska analiza i controlling</h3>
+        <p class="service-desc">Analiza profitabilnosti, likvidnosti, troškova, marži, cash flow-a, zaduženosti i poslovnih rizika. Brojevi koji govore — i nalažu šta dalje.</p>
+        <svg class="service-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 10h12M12 6l4 4-4 4"/>
+        </svg>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <ellipse cx="12" cy="5" rx="9" ry="3"/>
+          <path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+          <path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"/>
+        </svg>
+        <h3 class="service-title">ERP i poslovna analitika</h3>
+        <p class="service-desc">Korišćenje podataka iz vašeg ERP-a za izradu dashboard-a, menadžerskih izvještaja i sistema ranih upozorenja — bez zamjene postojećih sistema.</p>
+        <svg class="service-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 10h12M12 6l4 4-4 4"/>
+        </svg>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 8V4M5 12H2M19 12h3M12 22a10 10 0 100-20 10 10 0 000 20z"/>
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M9 15l-2 2M15 15l2 2"/>
+        </svg>
+        <h3 class="service-title">AI asistenti za kompanije</h3>
+        <p class="service-desc">Razvoj internih AI asistenata za finansije, nabavku, prodaju, upravu, pravne poslove i operacije — povezanih sa vašim podacima i procedurama.</p>
+        <svg class="service-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 10h12M12 6l4 4-4 4"/>
+        </svg>
+      </div>
+
+      <!-- Service 5 -->
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 12l3-3 3 3 3-6 3 6 3-3 3 3"/>
+          <path d="M3 19l3-3 3 3 3-6 3 6 3-3 3 3"/>
+        </svg>
+        <h3 class="service-title">Optimizacija poslovnih procesa</h3>
+        <p class="service-desc">Mapiranje procesa, identifikacija uskih grla, automatizacija rutinskih zadataka i konkretne preporuke za unapređenje operativne efikasnosti.</p>
+        <svg class="service-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 10h12M12 6l4 4-4 4"/>
+        </svg>
+      </div>
+
+      <!-- Service 6 -->
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+        </svg>
+        <h3 class="service-title">Analiza javnih nabavki i tendera</h3>
+        <p class="service-desc">AI analiza tenderske dokumentacije, identifikacija rizika i diskriminatornih elemenata, priprema zahtjeva za pojašnjenje i podrška u žalbenim postupcima.</p>
+        <svg class="service-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 10h12M12 6l4 4-4 4"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WHY US ==================== -->
+<section class="why">
+  <div class="container why-container">
+    <div class="reveal" style="text-align: center; margin-bottom: 72px;">
+      <div class="section-eyebrow" style="justify-content: center;">Zašto Fidelity Consulting</div>
+      <h2 class="section-title" style="margin: 0 auto;">Pet razloga zbog kojih nas biraju<br>kompanije koje misle ozbiljno.</h2>
+    </div>
+
+    <div class="why-grid reveal">
+      <div class="why-item">
+        <div class="why-item-num">01</div>
+        <h3 class="why-item-title">Finansije i tehnologija u istoj kući</h3>
+        <p class="why-item-desc">Ne morate da prevodite sa „finansijskog" na „IT". Razumijemo bilans uspjeha i SQL upit — i znamo kako jedno utiče na drugo.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item-num">02</div>
+        <h3 class="why-item-title">Mjerljivi rezultati, ne pilot projekti</h3>
+        <p class="why-item-desc">Svaki angažman ima definisan KPI prije početka. Ako ne donosimo mjerljivu vrijednost, ne nastavljamo. Tačka.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item-num">03</div>
+        <h3 class="why-item-title">Razumijevanje crnogorskog tržišta</h3>
+        <p class="why-item-desc">Lokalni propisi, lokalni ERP sistemi, lokalne navike u izvještavanju. Bez prevođenja stranih predložaka koji ne rade ovdje.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item-num">04</div>
+        <h3 class="why-item-title">Praktičan, ne teorijski pristup</h3>
+        <p class="why-item-desc">Ne pišemo strategije od 200 strana koje stoje u fioci. Pravimo alat koji koristite od prvog dana — i učite kroz njegovu upotrebu.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item-num">05</div>
+        <h3 class="why-item-title">Brza implementacija</h3>
+        <p class="why-item-desc">Prvi dashboard za 14 dana. Prvi AI asistent u produkciji za 30 dana. Bez beskonačnih „discovery" faza.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item-num">06</div>
+        <h3 class="why-item-title">Diskrecija po default-u</h3>
+        <p class="why-item-desc">Vaši finansijski podaci ostaju kod vas. Naši modeli rade lokalno gdje god je to moguće. NDA je polazna tačka, ne formalnost.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PROCESS ==================== -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="reveal" style="text-align: center; margin-bottom: 80px;">
+      <div class="section-eyebrow" style="justify-content: center;">Kako radimo</div>
+      <h2 class="section-title" style="margin: 0 auto;">Pet koraka od poslovnog problema do mjerljive uštede.</h2>
+    </div>
+
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="process-num">1</div>
+        <div>
+          <div class="process-title">Dijagnostika</div>
+          <div class="process-desc">Razgovor sa upravom, mapiranje bola, definicija šta želite da znate ili odlučite.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">2</div>
+        <div>
+          <div class="process-title">Analiza podataka</div>
+          <div class="process-desc">Pregled ERP-a, finansijskih izvještaja, operativnih podataka. Provjera kvaliteta i pokrivenosti.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">3</div>
+        <div>
+          <div class="process-title">Definisanje modela</div>
+          <div class="process-desc">Prijedlog konkretnog AI ili analitičkog rješenja, sa očekivanim KPI-ima i vremenskim okvirom.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">4</div>
+        <div>
+          <div class="process-title">Implementacija</div>
+          <div class="process-desc">Razvoj, integracija sa vašim sistemima, testiranje sa stvarnim podacima, obuka korisnika.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">5</div>
+        <div>
+          <div class="process-title">Praćenje i optimizacija</div>
+          <div class="process-desc">Mjesečni pregled rezultata, fina podešavanja, širenje na nove procese kada model dokaže vrijednost.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SOLUTIONS ==================== -->
+<section class="solutions" id="solutions">
+  <div class="container">
+    <div class="reveal" style="margin-bottom: 64px;">
+      <div class="section-eyebrow">Primjeri rješenja</div>
+      <h2 class="section-title">Konkretni moduli koje možemo isporučiti.</h2>
+      <p class="section-lead">Devet rješenja koja su već u upotrebi kod naših klijenata. Svako se prilagođava vašoj strukturi podataka i poslovnoj logici.</p>
+    </div>
+
+    <div class="solutions-grid reveal">
+
+      <div class="solution-card">
+        <div class="solution-mini-chart">
+          <svg viewBox="0 0 200 60" style="width: 100%;">
+            <path d="M0,40 L20,38 L40,42 L60,30 L80,33 L100,22 L120,28 L140,15 L160,20 L180,8 L200,12" fill="none" stroke="#4A7BC8" stroke-width="2"/>
+            <circle cx="180" cy="8" r="3" fill="#C9A961"/>
+          </svg>
+        </div>
+        <div>
+          <span class="solution-tag">Finansije</span>
+          <h3 class="solution-title" style="margin-top: 10px;">Cash flow 60 dana</h3>
+        </div>
+        <p class="solution-desc">Dnevna projekcija novčanog toka za narednih 60 dana, sa scenarijima i upozorenjima o potencijalnim nedostacima sredstava.</p>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-mini-chart">
+          <svg viewBox="0 0 200 60" style="width: 100%;">
+            <rect x="5" y="15" width="20" height="40" fill="#0A1F3D" rx="1"/>
+            <rect x="30" y="25" width="20" height="30" fill="#0A1F3D" opacity="0.7" rx="1"/>
+            <rect x="55" y="10" width="20" height="45" fill="#C9A961" rx="1"/>
+            <rect x="80" y="30" width="20" height="25" fill="#0A1F3D" opacity="0.5" rx="1"/>
+            <rect x="105" y="20" width="20" height="35" fill="#0A1F3D" opacity="0.6" rx="1"/>
+            <rect x="130" y="35" width="20" height="20" fill="#0A1F3D" opacity="0.4" rx="1"/>
+            <rect x="155" y="18" width="20" height="37" fill="#0A1F3D" opacity="0.7" rx="1"/>
+            <rect x="180" y="22" width="15" height="33" fill="#0A1F3D" opacity="0.6" rx="1"/>
+          </svg>
+        </div>
+        <div>
+          <span class="solution-tag">Prodaja</span>
+          <h3 class="solution-title" style="margin-top: 10px;">Profitabilnost po kupcu i proizvodu</h3>
+        </div>
+        <p class="solution-desc">Dashboard koji pokazuje stvarnu profitabilnost svakog kupca, proizvoda i sektora — uključujući indirektne troškove i rabate.</p>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-mini-chart">
+          <svg viewBox="0 0 200 60" style="width: 100%;">
+            <path d="M0,30 L40,30 L60,15 L80,45 L100,15 L120,45 L140,30 L200,30" fill="none" stroke="#B8341B" stroke-width="2"/>
+            <circle cx="100" cy="15" r="4" fill="#B8341B" opacity="0.3"/>
+            <circle cx="100" cy="15" r="2" fill="#B8341B"/>
+          </svg>
+        </div>
+        <div>
+          <span class="solution-tag">Rizik</span>
+          <h3 class="solution-title" style="margin-top: 10px;">Sistem ranog upozorenja</h3>
+        </div>
+        <p class="solution-desc">Automatska detekcija anomalija u likvidnosti, naplati potraživanja, marži i operativnim pokazateljima. Mejl ili Slack notifikacija.</p>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-mini-chart">
+          <svg viewBox="0 0 200 60" style="width: 100%;">
+            <circle cx="100" cy="30" r="22" fill="none" stroke="#E8EAEE" stroke-width="6"/>
+            <circle cx="100" cy="30" r="22" fill="none" stroke="#0A1F3D" stroke-width="6" stroke-dasharray="100 138" transform="rotate(-90 100 30)"/>
+            <text x="100" y="34" text-anchor="middle" fill="#0A1F3D" font-family="Fraunces" font-size="14" font-weight="500">73%</text>
+          </svg>
+        </div>
+        <div>
+          <span class="solution-tag">Troškovi</span>
+          <h3 class="solution-title" style="margin-top: 10px;">AI analiza troškova i odstupanja</h3>
+        </div>
+        <p class="solution-desc">Automatska klasifikacija troškova, identifikacija odstupanja od budžeta i predlozi za optimizaciju nabavke i logistike.</p>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-mini-chart">
+          <svg viewBox="0 0 200 60" style="width: 100%;">
+            <rect x="20" y="10" width="160" height="8" fill="#E8EAEE" rx="1"/>
+            <rect x="20" y="10" width="120" height="8" fill="#C9A961" rx="1"/>
+            <rect x="20" y="25" width="160" height="8" fill="#E8EAEE" rx="1"/>
+            <rect x="20" y="25" width="85" height="8" fill="#0A1F3D" rx="1"/>
+            <rect x="20" y="40" width="160" height="8" fill="#E8EAEE" rx="1"/>
+            <rect x="20" y="40" width="140" height="8" fill="#4A7BC8" rx="1"/>
+          </svg>
+        </div>
+        <div>
+          <span class="solution-tag">Tenderi</span>
+          <h3 class="solution-title" style="margin-top: 10px;">AI asistent za tendere</h3>
+        </div>
+        <p class="solution-desc">Analiza tenderske dokumentacije, identifikacija diskriminatornih elemenata, predlog zahtjeva za izmjenu i pomoć u izradi ponude.</p>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-mini-chart">
+          <svg viewBox="0 0 200 60" style="width: 100%;">
+            <path d="M0,45 L25,42 L50,35 L75,38 L100,28 L125,30 L150,18 L175,22 L200,10" fill="none" stroke="#0A1F3D" stroke-width="2"/>
+            <path d="M0,45 L25,42 L50,35 L75,38 L100,28 L125,30 L150,18 L175,22 L200,10 L200,60 L0,60 Z" fill="#0A1F3D" opacity="0.08"/>
+          </svg>
+        </div>
+        <div>
+          <span class="solution-tag">Prodaja</span>
+          <h3 class="solution-title" style="margin-top: 10px;">Analiza prodajnih trendova</h3>
+        </div>
+        <p class="solution-desc">Detekcija trendova, sezonskih obrazaca i predviđanje prodaje po artiklu, kupcu ili lokaciji — sa preciznošću koju Excel ne može.</p>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-mini-chart">
+          <svg viewBox="0 0 200 60" style="width: 100%;">
+            <rect x="10" y="10" width="40" height="40" fill="#0A1F3D" opacity="0.15" rx="2"/>
+            <rect x="10" y="10" width="40" height="40" fill="none" stroke="#0A1F3D" stroke-width="1" rx="2"/>
+            <line x1="20" y1="20" x2="40" y2="20" stroke="#0A1F3D" stroke-width="1"/>
+            <line x1="20" y1="30" x2="40" y2="30" stroke="#0A1F3D" stroke-width="1"/>
+            <line x1="20" y1="40" x2="35" y2="40" stroke="#0A1F3D" stroke-width="1"/>
+            <rect x="60" y="10" width="130" height="6" fill="#E8EAEE" rx="1"/>
+            <rect x="60" y="22" width="90" height="6" fill="#E8EAEE" rx="1"/>
+            <rect x="60" y="34" width="110" height="6" fill="#E8EAEE" rx="1"/>
+            <rect x="60" y="46" width="70" height="6" fill="#C9A961" rx="1"/>
+          </svg>
+        </div>
+        <div>
+          <span class="solution-tag">Menadžment</span>
+          <h3 class="solution-title" style="margin-top: 10px;">Automatizovani menadžerski izvještaji</h3>
+        </div>
+        <p class="solution-desc">Dnevni, sedmični i mjesečni izvještaji koji se generišu sami — sa narativnim komentarom, ne samo brojevima.</p>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-mini-chart">
+          <svg viewBox="0 0 200 60" style="width: 100%;">
+            <g>
+              <circle cx="30" cy="30" r="3" fill="#0A1F3D"/>
+              <circle cx="60" cy="20" r="3" fill="#0A1F3D"/>
+              <circle cx="80" cy="40" r="3" fill="#0A1F3D"/>
+              <circle cx="100" cy="25" r="3" fill="#0A1F3D"/>
+              <circle cx="120" cy="35" r="3" fill="#0A1F3D"/>
+              <circle cx="140" cy="15" r="8" fill="#B8341B" opacity="0.3"/>
+              <circle cx="140" cy="15" r="4" fill="#B8341B"/>
+              <circle cx="160" cy="30" r="3" fill="#0A1F3D"/>
+              <circle cx="180" cy="45" r="3" fill="#0A1F3D"/>
+            </g>
+          </svg>
+        </div>
+        <div>
+          <span class="solution-tag">Audit</span>
+          <h3 class="solution-title" style="margin-top: 10px;">Detekcija nepravilnosti u podacima</h3>
+        </div>
+        <p class="solution-desc">AI modeli koji prepoznaju neuobičajene transakcije, dvostruka knjiženja, sumnjive obrasce — prije nego što ih primijeti revizor.</p>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-mini-chart">
+          <svg viewBox="0 0 200 60" style="width: 100%;">
+            <line x1="10" y1="55" x2="190" y2="55" stroke="#E8EAEE" stroke-width="1"/>
+            <line x1="100" y1="5" x2="100" y2="55" stroke="#E8EAEE" stroke-width="1" stroke-dasharray="2 3"/>
+            <circle cx="40" cy="40" r="6" fill="#0A1F3D" opacity="0.3"/>
+            <circle cx="70" cy="20" r="9" fill="#0A1F3D" opacity="0.5"/>
+            <circle cx="130" cy="30" r="11" fill="#C9A961" opacity="0.7"/>
+            <circle cx="160" cy="45" r="5" fill="#0A1F3D" opacity="0.2"/>
+          </svg>
+        </div>
+        <div>
+          <span class="solution-tag">Strategija</span>
+          <h3 class="solution-title" style="margin-top: 10px;">Analiza marži i cjenovne politike</h3>
+        </div>
+        <p class="solution-desc">Detaljna razrada marži po proizvodu, kanalu i kupcu — sa preporukama za rebalans cijena tamo gdje gubite novac.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTORS ==================== -->
+<section class="sectors" id="sectors">
+  <div class="container">
+    <div class="reveal" style="text-align: center; margin-bottom: 64px;">
+      <div class="section-eyebrow" style="justify-content: center;">Sektori koje pokrivamo</div>
+      <h2 class="section-title" style="margin: 0 auto;">Industrije gdje već donosimo razliku.</h2>
+    </div>
+
+    <div class="sectors-grid reveal">
+      <div class="sector">
+        <svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 9l1-5h16l1 5M3 9v11a1 1 0 001 1h16a1 1 0 001-1V9M3 9h18M9 13h6"/>
+        </svg>
+        <div class="sector-name">Trgovina</div>
+      </div>
+      <div class="sector">
+        <svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M2 20h20M4 20V8l8-5 8 5v12M9 20v-8h6v8"/>
+        </svg>
+        <div class="sector-name">Proizvodnja</div>
+      </div>
+      <div class="sector">
+        <svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h2M13 9h2M9 13h2M13 13h2M9 17h2M13 17h2"/>
+        </svg>
+        <div class="sector-name">Građevinarstvo</div>
+      </div>
+      <div class="sector">
+        <svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 22h18M5 22V10h14v12M8 10V6a4 4 0 018 0v4M2 22V14h2M22 22V14h-2"/>
+        </svg>
+        <div class="sector-name">Turizam i hotelijerstvo</div>
+      </div>
+      <div class="sector">
+        <svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="6" width="20" height="14" rx="2"/>
+          <path d="M2 11h20M6 16h4"/>
+        </svg>
+        <div class="sector-name">Finansije</div>
+      </div>
+      <div class="sector">
+        <svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 21h18M3 7v14M21 7v14M5 21V3h14v18M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/>
+        </svg>
+        <div class="sector-name">Javne nabavke</div>
+      </div>
+      <div class="sector">
+        <svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="1" y="8" width="14" height="10" rx="1"/>
+          <path d="M15 11h4l3 3v4h-7M5 22a2 2 0 100-4 2 2 0 000 4zM19 22a2 2 0 100-4 2 2 0 000 4z"/>
+        </svg>
+        <div class="sector-name">Distribucija</div>
+      </div>
+      <div class="sector">
+        <svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 3v18M3 12h18"/>
+        </svg>
+        <div class="sector-name">Uslužne djelatnosti</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CTA BANNER ==================== -->
+<section class="cta-banner">
+  <div class="container cta-banner-inner reveal">
+    <p class="cta-quote">"Imate podatke.<br><em>Vrijeme je da ih pretvorite u odluke.</em>"</p>
+    <a href="#contact" class="btn btn-primary">
+      Zakažite konsultacije
+      <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 8h10M9 4l4 4-4 4"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="section-eyebrow">Kontakt</div>
+        <h2 class="section-title">Razgovor traje sat. Promjena traje godinama.</h2>
+        <p style="color: var(--text-muted); font-size: 16px; line-height: 1.7;">
+          Prvi razgovor je besplatan i bez obaveze. Sat vremena nam je dovoljno da razumijemo gdje gubite novac ili vrijeme — i da kažemo da li možemo da pomognemo.
+        </p>
+
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <svg class="contact-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            <div>
+              <div class="contact-info-label">Telefon</div>
+              <div class="contact-info-value"><a href="tel:+38267525774" style="color: inherit; text-decoration: none;">+382 67 52 57 74</a></div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <svg class="contact-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zM22 6l-10 7L2 6"/>
+            </svg>
+            <div>
+              <div class="contact-info-label">E-mail</div>
+              <div class="contact-info-value"><a href="mailto:office@fidelityconsulting.me" style="color: inherit; text-decoration: none;">office@fidelityconsulting.me</a></div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <svg class="contact-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <div>
+              <div class="contact-info-label">Adresa</div>
+              <div class="contact-info-value">Podgorica, Crna Gora</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form id="contact-form" class="contact-form reveal" novalidate>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="name">Ime i prezime</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-field">
+            <label for="company">Kompanija</label>
+            <input type="text" id="company" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-field">
+            <label for="phone">Telefon</label>
+            <input type="tel" id="phone">
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="interest">Oblast interesovanja</label>
+          <select id="interest">
+            <option>AI u poslovnim procesima</option>
+            <option>Finansijska analiza i controlling</option>
+            <option>ERP i poslovna analitika</option>
+            <option>AI asistenti za kompanije</option>
+            <option>Optimizacija poslovnih procesa</option>
+            <option>Analiza javnih nabavki i tendera</option>
+            <option>Nešto drugo</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="message">Poruka</label>
+          <textarea id="message" placeholder="Ukratko: šta je trenutni problem ili pitanje?"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary form-submit">
+          Pošaljite upit
+          <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </button>
+        <p class="form-note">Odgovaramo u roku od 24 sata. Vaši podaci ostaju kod nas — ne dijelimo ih ni sa kim.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <span class="logo-mark"></span>
+          Fidelity Consulting
+        </a>
+        <p class="footer-tagline">
+          AI, podaci i finansijska analitika za kompanije koje žele da odlučuju na osnovu brojeva — ne osjećaja.
+        </p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Usluge</div>
+        <ul>
+          <li><a href="#services">AI u procesima</a></li>
+          <li><a href="#services">Controlling</a></li>
+          <li><a href="#services">ERP analitika</a></li>
+          <li><a href="#services">AI asistenti</a></li>
+          <li><a href="#services">Optimizacija</a></li>
+          <li><a href="#services">Tenderi</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Kompanija</div>
+        <ul>
+          <li><a href="#about">O nama</a></li>
+          <li><a href="#process">Kako radimo</a></li>
+          <li><a href="#solutions">Rješenja</a></li>
+          <li><a href="#sectors">Sektori</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Pravno</div>
+        <ul>
+          <li><a href="#">Politika privatnosti</a></li>
+          <li><a href="#">Uslovi korišćenja</a></li>
+          <li><a href="#">NDA predložak</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Fidelity Consulting d.o.o. · Podgorica, Crna Gora</span>
+      <span>Napravljeno sa pažnjom prema svakom detalju.</span>
+    </div>
+  </div>
 </footer>
 
 <script>
-const D={"monthly": [{"m": "Jan", "rev": 162.65, "exp": 195.89}, {"m": "Feb", "rev": 191.92, "exp": 240.44}, {"m": "Mar", "rev": 280.72, "exp": 322.98}], "ekon": [{"code": "7", "name": "Prihodi budžeta", "plan": 609.37, "ost": 635.35, "diff": 25.98, "pct": 104.3, "q25": 580.45, "yoy": 9.5}, {"code": "711", "name": "Porezi", "plan": 490.32, "ost": 511.53, "diff": 21.2, "pct": 104.3, "q25": 469.88, "yoy": 8.9}, {"code": "7111", "name": "Porez na dohodak fizičkih lica", "plan": 20.19, "ost": 19.89, "diff": -0.3, "pct": 98.5, "q25": 20.28, "yoy": -1.9}, {"code": "7112", "name": "Porez na dobit pravnih lica", "plan": 87.95, "ost": 87.45, "diff": -0.5, "pct": 99.4, "q25": 78.2, "yoy": 11.8}, {"code": "7113", "name": "Porez na promet nepokretnosti", "plan": 0.0, "ost": 0.0, "diff": 0.0, "pct": 0, "q25": 0.0, "yoy": 0}, {"code": "7114", "name": "Porez na dodatu vrijednost", "plan": 290.19, "ost": 302.5, "diff": 12.31, "pct": 104.2, "q25": 282.28, "yoy": 7.2}, {"code": "7115", "name": "Akcize", "plan": 75.11, "ost": 83.21, "diff": 8.11, "pct": 110.8, "q25": 71.47, "yoy": 16.4}, {"code": "7116", "name": "Porez na međunarodnu trgovinu i transakcije", "plan": 13.26, "ost": 14.83, "diff": 1.57, "pct": 111.8, "q25": 14.16, "yoy": 4.7}, {"code": "7118", "name": "Ostali državni porezi", "plan": 3.63, "ost": 3.64, "diff": 0.01, "pct": 100.4, "q25": 3.48, "yoy": 4.5}, {"code": "712", "name": "Doprinosi", "plan": 87.08, "ost": 91.83, "diff": 4.75, "pct": 105.5, "q25": 84.4, "yoy": 8.8}, {"code": "7121", "name": "Doprinosi za penzijsko i invalidsko osiguranje", "plan": 77.41, "ost": 80.9, "diff": 3.49, "pct": 104.5, "q25": 71.29, "yoy": 13.5}, {"code": "7122", "name": "Doprinosi za zdravstveno osiguranje", "plan": 0.74, "ost": 0.66, "diff": -0.09, "pct": 88.2, "q25": 2.05, "yoy": -68.0}, {"code": "7123", "name": "Doprinosi za osiguranje od nezaposlenosti", "plan": 4.99, "ost": 5.94, "diff": 0.95, "pct": 119.0, "q25": 6.55, "yoy": -9.3}, {"code": "7124", "name": "Ostali doprinosi", "plan": 3.93, "ost": 4.33, "diff": 0.41, "pct": 110.4, "q25": 4.51, "yoy": -3.9}, {"code": "713", "name": "Takse", "plan": 2.99, "ost": 2.98, "diff": -0.01, "pct": 99.8, "q25": 3.04, "yoy": -1.8}, {"code": "714", "name": "Naknade", "plan": 16.83, "ost": 16.12, "diff": -0.71, "pct": 95.8, "q25": 12.15, "yoy": 32.6}, {"code": "715", "name": "Ostali prihodi", "plan": 8.03, "ost": 9.79, "diff": 1.76, "pct": 122.0, "q25": 8.11, "yoy": 20.7}, {"code": "73", "name": "Primici od otplate kredita i sredstva prenesena iz pret", "plan": 0.0, "ost": 0.0, "diff": 0.0, "pct": 0, "q25": 0.0, "yoy": 0}, {"code": "74", "name": "Donacije i transferi", "plan": 4.13, "ost": 3.11, "diff": -1.02, "pct": 75.2, "q25": 2.87, "yoy": 8.3}, {"code": "4", "name": "Izdaci budžeta", "plan": 829.83, "ost": 759.4, "diff": -70.43, "pct": 91.5, "q25": 645.65, "yoy": 17.6}, {"code": "41", "name": "Tekući izdaci", "plan": 305.35, "ost": 310.53, "diff": 5.18, "pct": 101.7, "q25": 248.11, "yoy": 25.2}, {"code": "411", "name": "Bruto zarade i doprinosi na teret poslodavca", "plan": 181.32, "ost": 177.23, "diff": -4.09, "pct": 97.7, "q25": 169.61, "yoy": 4.5}, {"code": "412", "name": "Ostala lična primanja", "plan": 6.04, "ost": 6.74, "diff": 0.7, "pct": 111.5, "q25": 3.73, "yoy": 80.4}, {"code": "413", "name": "Rashodi za materijal", "plan": 10.69, "ost": 7.59, "diff": -3.11, "pct": 71.0, "q25": 6.12, "yoy": 24.0}, {"code": "414", "name": "Rashodi za usluge", "plan": 24.78, "ost": 14.67, "diff": -10.11, "pct": 59.2, "q25": 10.12, "yoy": 45.0}, {"code": "415", "name": "Rashodi za tekuće održavanje", "plan": 13.36, "ost": 4.16, "diff": -9.21, "pct": 31.1, "q25": 4.19, "yoy": -0.8}, {"code": "416", "name": "Kamate", "plan": 33.37, "ost": 71.81, "diff": 38.44, "pct": 215.2, "q25": 31.58, "yoy": 127.4}, {"code": "417", "name": "Renta", "plan": 3.8, "ost": 2.3, "diff": -1.5, "pct": 60.5, "q25": 2.1, "yoy": 9.4}, {"code": "418", "name": "Subvencije", "plan": 12.36, "ost": 14.67, "diff": 2.31, "pct": 118.7, "q25": 10.87, "yoy": 35.0}, {"code": "419", "name": "Ostali izdaci", "plan": 19.63, "ost": 11.38, "diff": -8.25, "pct": 58.0, "q25": 9.8, "yoy": 16.1}, {"code": "42", "name": "Transferi za socijalnu zaštitu", "plan": 290.82, "ost": 280.64, "diff": -10.18, "pct": 96.5, "q25": 269.22, "yoy": 4.2}, {"code": "421", "name": "Prava iz oblasti socijalne zaštite", "plan": 64.41, "ost": 59.33, "diff": -5.08, "pct": 92.1, "q25": 62.83, "yoy": -5.6}, {"code": "422", "name": "Sredstva za tehnološke viškove", "plan": 6.49, "ost": 4.15, "diff": -2.34, "pct": 63.9, "q25": 4.35, "yoy": -4.7}, {"code": "423", "name": "Prava iz oblasti penzijskog i invalidskog osiguranja", "plan": 206.91, "ost": 204.92, "diff": -2.0, "pct": 99.0, "q25": 193.89, "yoy": 5.7}, {"code": "424", "name": "Ostala prava iz oblasti zdravstvene zaštite", "plan": 7.9, "ost": 7.43, "diff": -0.47, "pct": 94.1, "q25": 4.77, "yoy": 56.0}, {"code": "425", "name": "Ostala prava iz zdravstvenog osiguranja", "plan": 5.1, "ost": 4.81, "diff": -0.29, "pct": 94.3, "q25": 3.38, "yoy": 42.3}, {"code": "43", "name": "Transferi institucijama, pojedincima, nevladinom i javn", "plan": 120.17, "ost": 106.2, "diff": -13.97, "pct": 88.4, "q25": 82.45, "yoy": 28.8}, {"code": "44", "name": "Kapitalni izdaci", "plan": 90.67, "ost": 55.3, "diff": -35.37, "pct": 61.0, "q25": 32.07, "yoy": 72.4}, {"code": "451", "name": "Pozajmice i krediti", "plan": 0.0, "ost": 0.0, "diff": 0.0, "pct": 0, "q25": 0.0, "yoy": 0}, {"code": "47", "name": "Rezerve", "plan": 21.53, "ost": 0.5, "diff": -21.03, "pct": 2.3, "q25": 4.31, "yoy": -88.3}, {"code": "462", "name": "Otplata garancija", "plan": 0.0, "ost": 0.0, "diff": -0.0, "pct": 0.0, "q25": 4.06, "yoy": -100.0}, {"code": "4630", "name": "Otplata obaveza iz prethodnog perioda", "plan": 1.29, "ost": 6.22, "diff": 4.92, "pct": 480.2, "q25": 5.44, "yoy": 14.4}, {"code": "1005", "name": "Neto povećanje obaveza", "plan": 0.0, "ost": 0.0, "diff": 0.0, "pct": 0, "q25": 0.0, "yoy": 0}, {"code": "1000", "name": "Suficit / deficit", "plan": -194.78, "ost": -124.04, "diff": 70.74, "pct": 63.7, "q25": -65.2, "yoy": -90.3}, {"code": "1001", "name": "Primarni suficit/deficit", "plan": -161.42, "ost": -52.24, "diff": 109.18, "pct": 32.4, "q25": -33.61, "yoy": -55.4}, {"code": "46", "name": "Otplata dugova", "plan": 53.94, "ost": 69.77, "diff": 15.83, "pct": 129.3, "q25": 78.72, "yoy": -11.4}, {"code": "4611", "name": "Otplata hartija od vrijednosti i kredita rezidentima", "plan": 7.33, "ost": 7.3, "diff": -0.03, "pct": 99.6, "q25": 8.11, "yoy": -10.0}, {"code": "4612", "name": "Otplata hartija od vrijednosti i kredita nerezidentima", "plan": 46.61, "ost": 62.47, "diff": 15.86, "pct": 134.0, "q25": 70.61, "yoy": -11.5}, {"code": "4418", "name": "Izdaci za kupovinu hartija od vrijednosti", "plan": 24.83, "ost": 14.79, "diff": -10.04, "pct": 59.6, "q25": 1.04, "yoy": 1319.0}, {"code": "451", "name": "Pozajmice i krediti", "plan": 2.76, "ost": 2.93, "diff": 0.17, "pct": 106.3, "q25": 2.93, "yoy": -0.2}, {"code": "1002", "name": "Nedostajuća sredstva", "plan": -276.31, "ost": -211.53, "diff": 64.78, "pct": 76.6, "q25": -147.9, "yoy": -43.0}, {"code": "1003", "name": "Finansiranje", "plan": 276.31, "ost": 211.53, "diff": -64.78, "pct": 76.6, "q25": 147.9, "yoy": 43.0}, {"code": "7511", "name": "Pozajmice i krediti od domaćih izvora", "plan": 0.0, "ost": 0.0, "diff": 0.0, "pct": 0, "q25": 0.0, "yoy": 0}, {"code": "7512", "name": "Pozajmice i krediti od inostranih izvora", "plan": 100.0, "ost": 17.99, "diff": -82.01, "pct": 18.0, "q25": 17.77, "yoy": 1.3}, {"code": "72", "name": "Primici od prodaje imovine", "plan": 1.5, "ost": 0.16, "diff": -1.34, "pct": 10.7, "q25": 0.6, "yoy": -73.2}, {"code": "73", "name": "Primici od otplate kredita i sredstva prenesena iz pret", "plan": 2.44, "ost": 4.3, "diff": 1.86, "pct": 176.3, "q25": 4.24, "yoy": 1.4}, {"code": "1004", "name": "Povećanje / smanjenje depozita", "plan": 172.37, "ost": 189.08, "diff": 16.71, "pct": 109.7, "q25": 125.3, "yoy": 50.9}], "funk": [{"code": "04", "name": "EKONOMSKI POSLOVI", "plan": 95.69, "ost": 58.73, "diff": -36.97, "pct": 61.4, "yoy": 31.5, "lv": 2, "ch": [{"code": "045", "name": "Saobraćaj", "plan": 59.54, "ost": 36.69, "diff": -22.84, "pct": 61.6, "yoy": 66.2, "lv": 3, "ch4": [{"code": "0451", "name": "Drumski saobraćaj", "plan": 52.37, "ost": 33.13, "diff": -19.24, "pct": 63.3, "yoy": 90.7, "lv": 4}, {"code": "0453", "name": "Željeznički saobraćaj", "plan": 5.63, "ost": 3.06, "diff": -2.58, "pct": 54.3, "yoy": -24.7, "lv": 4}, {"code": "0454", "name": "Vazdušni saobraćaj", "plan": 0.79, "ost": 0.03, "diff": -0.76, "pct": 4.2, "yoy": -77.6, "lv": 4}, {"code": "0452", "name": "Vodeni saobraćaj", "plan": 0.74, "ost": 0.47, "diff": -0.27, "pct": 63.5, "yoy": -5.1, "lv": 4}]}, {"code": "047", "name": "Ostale djelatnosti", "plan": 8.65, "ost": 2.71, "diff": -5.94, "pct": 31.3, "yoy": -39.8, "lv": 3, "ch4": [{"code": "0473", "name": "Turizam", "plan": 5.72, "ost": 1.0, "diff": -4.72, "pct": 17.5, "yoy": -51.3, "lv": 4}, {"code": "0474", "name": "Višenamjenski razvojni projekti", "plan": 2.93, "ost": 1.71, "diff": -1.22, "pct": 58.4, "yoy": -30.2, "lv": 4}]}, {"code": "042", "name": "Poljoprivreda, šumarstvo, lov i ribolov", "plan": 6.73, "ost": 3.34, "diff": -3.39, "pct": 49.6, "yoy": -24.8, "lv": 3, "ch4": [{"code": "0421", "name": "Poljoprivreda", "plan": 6.4, "ost": 3.25, "diff": -3.15, "pct": 50.8, "yoy": -24.9, "lv": 4}, {"code": "0423", "name": "Ribolov i lov", "plan": 0.26, "ost": 0.04, "diff": -0.22, "pct": 16.9, "yoy": -22.2, "lv": 4}, {"code": "0422", "name": "Šumarstvo", "plan": 0.07, "ost": 0.05, "diff": -0.02, "pct": 66.3, "yoy": -18.9, "lv": 4}]}, {"code": "041", "name": "Opšti ekonomski, komercijalni poslovi i poslovi ve", "plan": 10.91, "ost": 7.99, "diff": -2.93, "pct": 73.2, "yoy": 19.0, "lv": 3, "ch4": [{"code": "0411", "name": "Opšti ekonomski i komercijalni poslovi", "plan": 10.91, "ost": 7.99, "diff": -2.93, "pct": 73.2, "yoy": 19.0, "lv": 4}]}, {"code": "049", "name": "Ekonomski poslovi neklasifikovani na drugom mjestu", "plan": 1.64, "ost": 0.45, "diff": -1.18, "pct": 27.6, "yoy": 688.3, "lv": 3, "ch4": [{"code": "0490", "name": "Ekonomski poslovi neklasifikovani na drugom mjestu", "plan": 1.64, "ost": 0.45, "diff": -1.18, "pct": 27.6, "yoy": 688.3, "lv": 4}]}, {"code": "048", "name": "Ekonomski poslovi - istraživanje i razvoj", "plan": 1.97, "ost": 1.44, "diff": -0.53, "pct": 73.0, "yoy": -9.6, "lv": 3, "ch4": [{"code": "0482", "name": "Poljoprivreda, šumarstvo, ribolov i lov - istraživ", "plan": 1.79, "ost": 1.29, "diff": -0.5, "pct": 72.2, "yoy": -11.7, "lv": 4}, {"code": "0487", "name": "Ostale djelatnosti - istraživanje i razvoj", "plan": 0.18, "ost": 0.14, "diff": -0.03, "pct": 81.0, "yoy": 15.3, "lv": 4}]}, {"code": "044", "name": "Rudarstvo, proizvodnja i gradjevinarstvo", "plan": 0.74, "ost": 0.65, "diff": -0.09, "pct": 87.5, "yoy": 86.8, "lv": 3, "ch4": [{"code": "0443", "name": "Gradjevinarstvo", "plan": 0.74, "ost": 0.65, "diff": -0.09, "pct": 87.5, "yoy": 86.8, "lv": 4}]}, {"code": "043", "name": "Gorivo i energija", "plan": 0.13, "ost": 0.07, "diff": -0.06, "pct": 54.0, "yoy": -44.7, "lv": 3, "ch4": [{"code": "0432", "name": "Nafta i prirodni gas", "plan": 0.13, "ost": 0.07, "diff": -0.06, "pct": 54.0, "yoy": -44.7, "lv": 4}]}, {"code": "046", "name": "Komunikacije", "plan": 5.4, "ost": 5.4, "diff": 0.0, "pct": 100.0, "yoy": 12.1, "lv": 3, "ch4": [{"code": "0460", "name": "Komunikacije", "plan": 5.4, "ost": 5.4, "diff": 0.0, "pct": 100.0, "yoy": 12.1, "lv": 4}]}]}, {"code": "07", "name": "ZDRAVSTVO", "plan": 134.87, "ost": 122.42, "diff": -12.44, "pct": 90.8, "yoy": 20.2, "lv": 2, "ch": [{"code": "074", "name": "Usluge javnog zdravstva", "plan": 124.74, "ost": 119.97, "diff": -4.77, "pct": 96.2, "yoy": 21.3, "lv": 3, "ch4": [{"code": "0740", "name": "Usluge javnog zdravstva", "plan": 124.74, "ost": 119.97, "diff": -4.77, "pct": 96.2, "yoy": 21.3, "lv": 4}]}, {"code": "075", "name": "Zdravstvo - istraživanje i razvoj", "plan": 5.77, "ost": 1.08, "diff": -4.69, "pct": 18.8, "yoy": -25.7, "lv": 3, "ch4": [{"code": "0750", "name": "Zdravstvo - istraživanje i razvoj", "plan": 5.77, "ost": 1.08, "diff": -4.69, "pct": 18.8, "yoy": -25.7, "lv": 4}]}, {"code": "076", "name": "Zdravstvo - neklasifikovano na drugom mjestu", "plan": 4.35, "ost": 1.37, "diff": -2.99, "pct": 31.4, "yoy": -10.7, "lv": 3, "ch4": [{"code": "0760", "name": "Zdravstvo - neklasifikovano na drugom mjestu", "plan": 4.35, "ost": 1.37, "diff": -2.99, "pct": 31.4, "yoy": -10.7, "lv": 4}]}]}, {"code": "03", "name": "JAVNI RED I BEZBJEDNOST", "plan": 60.9, "ost": 48.81, "diff": -12.08, "pct": 80.2, "yoy": 12.9, "lv": 2, "ch": [{"code": "031", "name": "Službe policije", "plan": 35.58, "ost": 26.08, "diff": -9.49, "pct": 73.3, "yoy": 12.8, "lv": 3, "ch4": [{"code": "0310", "name": "Službe policije", "plan": 35.58, "ost": 26.08, "diff": -9.49, "pct": 73.3, "yoy": 12.8, "lv": 4}]}, {"code": "034", "name": "Zatvori", "plan": 4.46, "ost": 3.13, "diff": -1.32, "pct": 70.3, "yoy": -3.6, "lv": 3, "ch4": [{"code": "0340", "name": "Zatvori", "plan": 4.46, "ost": 3.13, "diff": -1.32, "pct": 70.3, "yoy": -3.6, "lv": 4}]}, {"code": "036", "name": "Javni red i bezbjednost - neklasifikovano na drugo", "plan": 7.78, "ost": 6.49, "diff": -1.29, "pct": 83.4, "yoy": -2.9, "lv": 3, "ch4": [{"code": "0360", "name": "Javni red i bezbjednost - neklasifikovano na drugo", "plan": 7.78, "ost": 6.49, "diff": -1.29, "pct": 83.4, "yoy": -2.9, "lv": 4}]}, {"code": "033", "name": "Sudovi", "plan": 13.09, "ost": 13.11, "diff": 0.02, "pct": 100.2, "yoy": 28.7, "lv": 3, "ch4": [{"code": "0330", "name": "Sudovi", "plan": 13.09, "ost": 13.11, "diff": 0.02, "pct": 100.2, "yoy": 28.7, "lv": 4}]}]}, {"code": "10", "name": "SOCIJALNA ZAŠTITA", "plan": 297.62, "ost": 290.77, "diff": -6.85, "pct": 97.7, "yoy": 3.2, "lv": 2, "ch": [{"code": "109", "name": "Socijalna zaštita - neklasifikovano na drugom mjes", "plan": 74.27, "ost": 67.19, "diff": -7.08, "pct": 90.5, "yoy": -3.4, "lv": 3, "ch4": [{"code": "1091", "name": "Socijalna zaštita - neklasifikovano na drugom mjes", "plan": 74.27, "ost": 67.19, "diff": -7.08, "pct": 90.5, "yoy": -3.4, "lv": 4}]}, {"code": "102", "name": "Starost", "plan": 208.23, "ost": 205.98, "diff": -2.25, "pct": 98.9, "yoy": 5.6, "lv": 3, "ch4": [{"code": "1021", "name": "Starost", "plan": 208.23, "ost": 205.98, "diff": -2.25, "pct": 98.9, "yoy": 5.6, "lv": 4}]}, {"code": "107", "name": "Socijalno ugrožena lica - neklasifikovano na drugo", "plan": 0.12, "ost": 0.1, "diff": -0.02, "pct": 85.7, "yoy": 127.5, "lv": 3, "ch4": [{"code": "1071", "name": "Socijalno ugrožena lica - neklasifikovano na drugo", "plan": 0.12, "ost": 0.1, "diff": -0.02, "pct": 85.7, "yoy": 127.5, "lv": 4}]}, {"code": "105", "name": "Nezaposlenost", "plan": 15.0, "ost": 17.5, "diff": 2.5, "pct": 116.7, "yoy": 2.1, "lv": 3, "ch4": [{"code": "1051", "name": "Nezaposlenost", "plan": 15.0, "ost": 17.5, "diff": 2.5, "pct": 116.7, "yoy": 2.1, "lv": 4}]}]}, {"code": "09", "name": "OBRAZOVANJE", "plan": 85.16, "ost": 79.41, "diff": -5.75, "pct": 93.2, "yoy": -2.6, "lv": 2, "ch": [{"code": "094", "name": "Visoko obrazovanje", "plan": 11.32, "ost": 7.46, "diff": -3.86, "pct": 65.9, "yoy": -27.9, "lv": 3, "ch4": [{"code": "0941", "name": "Visoko obrazovanje - prvi stepen", "plan": 11.06, "ost": 7.45, "diff": -3.61, "pct": 67.4, "yoy": -26.6, "lv": 4}, {"code": "0942", "name": "Visoko obrazovanje - drugi stepen", "plan": 0.26, "ost": 0.01, "diff": -0.25, "pct": 3.1, "yoy": -96.0, "lv": 4}]}, {"code": "096", "name": "Pomoćne usluge u obrazovanju", "plan": 11.12, "ost": 8.55, "diff": -2.57, "pct": 76.9, "yoy": 0.1, "lv": 3, "ch4": [{"code": "0960", "name": "Pomoćne usluge u obrazovanju", "plan": 11.12, "ost": 8.55, "diff": -2.57, "pct": 76.9, "yoy": 0.1, "lv": 4}]}, {"code": "098", "name": "Obrazovanje - neklasifikovano na drugom mjestu", "plan": 4.49, "ost": 2.56, "diff": -1.94, "pct": 56.9, "yoy": -11.2, "lv": 3, "ch4": [{"code": "0980", "name": "Obrazovanje - neklasifikovano na drugom mjestu", "plan": 4.49, "ost": 2.56, "diff": -1.94, "pct": 56.9, "yoy": -11.2, "lv": 4}]}, {"code": "092", "name": "Srednje obrazovanje", "plan": 14.37, "ost": 15.46, "diff": 1.09, "pct": 107.6, "yoy": 5.8, "lv": 3, "ch4": [{"code": "0922", "name": "Više srednje obrazovanje", "plan": 14.37, "ost": 15.46, "diff": 1.09, "pct": 107.6, "yoy": 5.8, "lv": 4}]}, {"code": "091", "name": "Predškolsko i osnovno obrazovanje", "plan": 43.85, "ost": 45.38, "diff": 1.53, "pct": 103.5, "yoy": 0.4, "lv": 3, "ch4": [{"code": "0911", "name": "Predškolsko obrazovanje", "plan": 11.6, "ost": 11.93, "diff": 0.33, "pct": 102.9, "yoy": 2.4, "lv": 4}, {"code": "0912", "name": "Osnovno obrazovanje", "plan": 32.25, "ost": 33.45, "diff": 1.19, "pct": 103.7, "yoy": -0.2, "lv": 4}]}]}, {"code": "08", "name": "SPORT, KULTURA I RELIGIJA", "plan": 14.0, "ost": 10.02, "diff": -3.99, "pct": 71.5, "yoy": -11.9, "lv": 2, "ch": [{"code": "086", "name": "Sport, kultura i religija - neklasifikovano na dru", "plan": 4.68, "ost": 1.83, "diff": -2.84, "pct": 39.2, "yoy": -5.2, "lv": 3, "ch4": [{"code": "0860", "name": "Sport, kultura i religija - neklasifikovano na dru", "plan": 4.68, "ost": 1.83, "diff": -2.84, "pct": 39.2, "yoy": -5.2, "lv": 4}]}, {"code": "082", "name": "Usluge kulture", "plan": 5.03, "ost": 3.93, "diff": -1.09, "pct": 78.2, "yoy": -2.7, "lv": 3, "ch4": [{"code": "0820", "name": "Usluge kulture", "plan": 5.03, "ost": 3.93, "diff": -1.09, "pct": 78.2, "yoy": -2.7, "lv": 4}]}, {"code": "085", "name": "Sport, kultura i religija - istraživanja i razvoj", "plan": 0.71, "ost": 0.02, "diff": -0.7, "pct": 2.3, "yoy": 246.3, "lv": 3, "ch4": [{"code": "0850", "name": "Sport, kultura i religija - istraživanja i razvoj", "plan": 0.71, "ost": 0.02, "diff": -0.7, "pct": 2.3, "yoy": 246.3, "lv": 4}]}, {"code": "081", "name": "Usluge rekreacije i sporta", "plan": 3.58, "ost": 4.23, "diff": 0.65, "pct": 118.1, "yoy": -21.3, "lv": 3, "ch4": [{"code": "0810", "name": "Usluge rekreacije i sporta", "plan": 3.58, "ost": 4.23, "diff": 0.65, "pct": 118.1, "yoy": -21.3, "lv": 4}]}]}, {"code": "06", "name": "POSLOVI STANOVANJA I ZAJEDNICE", "plan": 4.16, "ost": 1.48, "diff": -2.67, "pct": 35.7, "yoy": 13.1, "lv": 2, "ch": [{"code": "066", "name": "Poslovi stanovanja i zajednice neklasifikovane na ", "plan": 4.16, "ost": 1.48, "diff": -2.67, "pct": 35.7, "yoy": 13.1, "lv": 3, "ch4": [{"code": "0660", "name": "Poslovi stanovanja i zajednice neklasifikovane na ", "plan": 4.16, "ost": 1.48, "diff": -2.67, "pct": 35.7, "yoy": 13.1, "lv": 4}]}]}, {"code": "05", "name": "ZAŠTITA ŽIVOTNE SREDINE", "plan": 5.1, "ost": 2.83, "diff": -2.27, "pct": 55.5, "yoy": 45.8, "lv": 2, "ch": [{"code": "056", "name": "Zaštita životne sredine neklasifikovana na drugom ", "plan": 5.1, "ost": 2.83, "diff": -2.27, "pct": 55.5, "yoy": 45.8, "lv": 3, "ch4": [{"code": "0560", "name": "Zaštita životne sredine neklasifikovana na drugom ", "plan": 5.1, "ost": 2.83, "diff": -2.27, "pct": 55.5, "yoy": 45.8, "lv": 4}]}]}, {"code": "01", "name": "OPŠTE JAVNE SLUŽBE", "plan": 194.14, "ost": 202.89, "diff": 8.75, "pct": 104.5, "yoy": 20.1, "lv": 2, "ch": [{"code": "011", "name": "Izvršni i zakonodavni organi, finansijski i fiskal", "plan": 151.67, "ost": 124.49, "diff": -27.18, "pct": 82.1, "yoy": -6.0, "lv": 3, "ch4": [{"code": "0112", "name": "Finansijski i fiskalni poslovi", "plan": 126.97, "ost": 104.76, "diff": -22.21, "pct": 82.5, "yoy": -11.0, "lv": 4}, {"code": "0111", "name": "Izvršni i zakonodavni organi", "plan": 17.21, "ost": 13.07, "diff": -4.15, "pct": 75.9, "yoy": 39.2, "lv": 4}, {"code": "0113", "name": "Inostrani poslovi", "plan": 7.49, "ost": 6.66, "diff": -0.83, "pct": 88.9, "yoy": 27.5, "lv": 4}]}, {"code": "014", "name": "Osnovno istraživanje", "plan": 3.6, "ost": 1.68, "diff": -1.93, "pct": 46.5, "yoy": 77.6, "lv": 3, "ch4": [{"code": "0140", "name": "Osnovno istraživanje", "plan": 3.6, "ost": 1.68, "diff": -1.93, "pct": 46.5, "yoy": 77.6, "lv": 4}]}, {"code": "013", "name": "Opšte službe", "plan": 3.39, "ost": 2.19, "diff": -1.2, "pct": 64.5, "yoy": -22.7, "lv": 3, "ch4": [{"code": "0133", "name": "Ostale opšte službe", "plan": 2.32, "ost": 1.45, "diff": -0.87, "pct": 62.6, "yoy": -14.0, "lv": 4}, {"code": "0131", "name": "Opšte kadrovske službe", "plan": 0.48, "ost": 0.28, "diff": -0.21, "pct": 56.8, "yoy": -60.4, "lv": 4}, {"code": "0132", "name": "Opšte službe planiranja i statistike", "plan": 0.59, "ost": 0.46, "diff": -0.13, "pct": 78.3, "yoy": 3.2, "lv": 4}]}, {"code": "016", "name": "Opšte javne službe - neklasifikovane na drugom mes", "plan": 1.59, "ost": 1.35, "diff": -0.23, "pct": 85.3, "yoy": 81.8, "lv": 3, "ch4": [{"code": "0160", "name": "Opšte javne službe - neklasifikovane na drugom mes", "plan": 1.59, "ost": 1.35, "diff": -0.23, "pct": 85.3, "yoy": 81.8, "lv": 4}]}, {"code": "017", "name": "Poslovi javnog duga", "plan": 33.89, "ost": 73.19, "diff": 39.3, "pct": 215.9, "yoy": 128.1, "lv": 3, "ch4": [{"code": "0170", "name": "Poslovi javnog duga", "plan": 33.89, "ost": 73.19, "diff": 39.3, "pct": 215.9, "yoy": 128.1, "lv": 4}]}]}, {"code": "02", "name": "ODBRANA", "plan": 19.72, "ost": 29.51, "diff": 9.79, "pct": 149.6, "yoy": 94.9, "lv": 2, "ch": [{"code": "025", "name": "Odbrana - neklasifikovana na drugom mjestu", "plan": 0.19, "ost": 0.12, "diff": -0.06, "pct": 65.3, "yoy": -6.8, "lv": 3, "ch4": [{"code": "0250", "name": "Odbrana - neklasifikovana na drugom mjestu", "plan": 0.19, "ost": 0.12, "diff": -0.06, "pct": 65.3, "yoy": -6.8, "lv": 4}]}, {"code": "021", "name": "Vojna odbrana", "plan": 19.54, "ost": 29.39, "diff": 9.86, "pct": 150.4, "yoy": 95.8, "lv": 3, "ch4": [{"code": "0210", "name": "Vojna odbrana", "plan": 19.54, "ost": 29.39, "diff": 9.86, "pct": 150.4, "yoy": 95.8, "lv": 4}]}]}], "prog": [{"code": "17", "name": "Saobraćaj", "plan": 60.48, "ost": 37.31, "diff": -23.17, "pct": 61.7, "ch": [{"code": "17 020 K01", "name": "Rekonstrukcija regionalnih i magistralnih puteva", "plan": 13.87, "ost": 6.76, "diff": -7.11, "pct": 48.7, "yoy": 96.0, "mp": "17"}, {"code": "17 020 K03", "name": "Izgradnja autoputeva", "plan": 24.25, "ost": 18.83, "diff": -5.43, "pct": 77.6, "yoy": 274.3, "mp": "17"}, {"code": "17 020 K04", "name": "Izgradnja lokalne infrastrukture", "plan": 7.51, "ost": 2.48, "diff": -5.03, "pct": 33.0, "yoy": 2.3, "mp": "17"}, {"code": "17 019 008", "name": "Djelovanje Uprave za željeznice", "plan": 5.46, "ost": 2.62, "diff": -2.84, "pct": 48.0, "yoy": -34.3, "mp": "17"}, {"code": "17 020 K02", "name": "Rješavanje uskih grla na saobraćajnoj mreži Crne Gore", "plan": 1.79, "ost": 0.0, "diff": -1.79, "pct": 0.0, "yoy": -100.0, "mp": "17"}]}, {"code": "21", "name": "Zdravstvo", "plan": 134.97, "ost": 122.52, "diff": -12.45, "pct": 90.8, "ch": [{"code": "21 011 K01", "name": "Izgradnja i rekonstrukcija objekata zdravstva", "plan": 6.09, "ost": 0.43, "diff": -5.66, "pct": 7.0, "yoy": 7.0, "mp": "21"}, {"code": "21 011 002", "name": "Zdravstvena zaštita", "plan": 55.08, "ost": 52.69, "diff": -2.4, "pct": 95.6, "yoy": 6.9, "mp": "21"}, {"code": "21 011 001", "name": "Razvoj i podrška sistemu zdravstva", "plan": 1.54, "ost": 0.05, "diff": -1.49, "pct": 3.4, "yoy": -80.4, "mp": "21"}, {"code": "21 011 006", "name": "Ostvarivanje prava na ljekove, medicinska sredstva, mat", "plan": 53.6, "ost": 52.29, "diff": -1.31, "pct": 97.6, "yoy": 38.4, "mp": "21"}, {"code": "21 011 003", "name": "Ostala zdravstvena zaštita", "plan": 14.68, "ost": 13.8, "diff": -0.88, "pct": 94.0, "yoy": 28.3, "mp": "21"}]}, {"code": "22", "name": "Socijalno staranje", "plan": 282.76, "ost": 273.1, "diff": -9.66, "pct": 96.6, "ch": [{"code": "22 025 002", "name": "Prava iz oblasti boračke, invalidske i dječje zaštite", "plan": 68.1, "ost": 61.51, "diff": -6.59, "pct": 90.3, "yoy": -5.6, "mp": "22"}, {"code": "22 010 001", "name": "Prava iz penzijskog i invalidskog osiguranja", "plan": 206.91, "ost": 204.92, "diff": -2.0, "pct": 99.0, "yoy": 5.6, "mp": "22"}, {"code": "22 025 001", "name": "Obavljanje djelatnosti ustanova socijalne i dječije zaš", "plan": 5.03, "ost": 4.47, "diff": -0.56, "pct": 88.8, "yoy": 19.0, "mp": "22"}, {"code": "22 010 003", "name": "Stručni i operativni poslovi Fonda za penzijsko i inval", "plan": 1.07, "ost": 0.87, "diff": -0.2, "pct": 81.1, "yoy": -14.7, "mp": "22"}, {"code": "22 028 001", "name": "Stručni i operativni poslovi Ministarstva rada,zapošlja", "plan": 0.31, "ost": 0.17, "diff": -0.13, "pct": 56.7, "yoy": -22.5, "mp": "22"}]}, {"code": "15", "name": "Ekonomija i turizam", "plan": 32.51, "ost": 23.42, "diff": -9.09, "pct": 72.0, "ch": [{"code": "15 019 K01", "name": "Unapređenje turističke ponude", "plan": 4.35, "ost": 0.19, "diff": -4.16, "pct": 4.4, "yoy": -86.8, "mp": "15"}, {"code": "15 021 009", "name": "Pasivne mjere tržišta rada", "plan": 6.37, "ost": 3.89, "diff": -2.48, "pct": 61.0, "yoy": -39.0, "mp": "15"}, {"code": "15 030 K01", "name": "Razvojni projekti Prijestonice Cetinje", "plan": 2.95, "ost": 1.47, "diff": -1.48, "pct": 49.8, "yoy": -59.9, "mp": "15"}, {"code": "15 037 003", "name": "Podrška razvoju inovacione infrastrukture i inovacioni ", "plan": 1.14, "ost": 0.0, "diff": -1.14, "pct": 0.0, "yoy": 0, "mp": "15"}, {"code": "15 021 003", "name": "Profesionalna rehabilitacija", "plan": 6.47, "ost": 12.09, "diff": 5.62, "pct": 186.9, "yoy": 34.5, "mp": "15"}]}, {"code": "19", "name": "Obrazovanje, nauka i sport", "plan": 92.81, "ost": 85.47, "diff": -7.34, "pct": 92.1, "ch": [{"code": "19 035 002", "name": "Podrška radu visokoškolskih ustanova", "plan": 10.88, "ost": 7.38, "diff": -3.5, "pct": 67.8, "yoy": -26.7, "mp": "19"}, {"code": "19 032 K04", "name": "Izgradnja i rekonstrukcija objekata u oblasti obrazovan", "plan": 3.82, "ost": 2.33, "diff": -1.49, "pct": 61.0, "yoy": -36.5, "mp": "19"}, {"code": "19 035 001", "name": "Politike visokog obrazovanja", "plan": 3.4, "ost": 1.99, "diff": -1.41, "pct": 58.5, "yoy": -9.5, "mp": "19"}, {"code": "19 038 K01", "name": "Izgradnja i rekonstrukcija sportskih objekata", "plan": 1.46, "ost": 0.33, "diff": -1.13, "pct": 22.4, "yoy": 212.9, "mp": "19"}, {"code": "19 033 002", "name": "Osnovno obrazovanje", "plan": 31.75, "ost": 33.14, "diff": 1.39, "pct": 104.4, "yoy": 1.6, "mp": "19"}]}, {"code": "11", "name": "Politički sistem i upravljanje", "plan": 31.78, "ost": 26.58, "diff": -5.2, "pct": 83.6, "ch": [{"code": "11 053 001", "name": "Informaciono društvo", "plan": 1.31, "ost": 0.55, "diff": -0.76, "pct": 42.0, "yoy": -39.0, "mp": "11"}, {"code": "11 048 002", "name": "Stručni i operativni poslovi Skupštine Crne Gore", "plan": 2.38, "ost": 1.7, "diff": -0.68, "pct": 71.5, "yoy": 23.7, "mp": "11"}, {"code": "11 048 001", "name": "Zakonodavna, kontrolna i predstavnička funkcija Skupšti", "plan": 1.88, "ost": 1.24, "diff": -0.64, "pct": 65.8, "yoy": 15.8, "mp": "11"}, {"code": "11 051 001", "name": "Rad diplomatskih i konzularnih predstavništava", "plan": 5.31, "ost": 4.75, "diff": -0.57, "pct": 89.3, "yoy": 29.9, "mp": "11"}, {"code": "11 050 001", "name": "Finansiranje rada parlamentarnih subjekata", "plan": 7.17, "ost": 6.75, "diff": -0.42, "pct": 94.2, "yoy": 386.7, "mp": "11"}]}, {"code": "16", "name": "Poljoprivreda, šumarstvo, vodoprivreda", "plan": 10.82, "ost": 6.46, "diff": -4.36, "pct": 59.7, "ch": [{"code": "16 002 001", "name": "Podrška poljoprivredi", "plan": 3.45, "ost": 1.48, "diff": -1.97, "pct": 43.0, "yoy": -3.4, "mp": "16"}, {"code": "16 002 007", "name": "Podrška Agenciji za plaćanje", "plan": 1.72, "ost": 0.87, "diff": -0.85, "pct": 50.4, "yoy": 95.5, "mp": "16"}, {"code": "16 002 006", "name": "Podrška ruralnom razvoju", "plan": 0.91, "ost": 0.08, "diff": -0.83, "pct": 8.3, "yoy": -87.9, "mp": "16"}, {"code": "16 005 003", "name": "Djelovanje Uprave za gazdovanje šumama i lovištima", "plan": 1.79, "ost": 1.29, "diff": -0.5, "pct": 72.2, "yoy": -11.7, "mp": "16"}, {"code": "16 006 003", "name": "Podrška vodopirvredi", "plan": 0.56, "ost": 0.85, "diff": 0.29, "pct": 151.9, "yoy": 11.2, "mp": "16"}]}, {"code": "18", "name": "Prost. planiranje i živ. sredina", "plan": 12.9, "ost": 9.09, "diff": -3.81, "pct": 70.5, "ch": [{"code": "18 003 K01", "name": "Projekti očuvanja životne sredine", "plan": 4.16, "ost": 1.66, "diff": -2.5, "pct": 39.9, "yoy": 131.9, "mp": "18"}, {"code": "18 004 K01", "name": "Izgradnja i rekonstrukcija stambenih objekata", "plan": 2.5, "ost": 0.0, "diff": -2.5, "pct": 0.0, "yoy": 0, "mp": "18"}, {"code": "18 004 002", "name": "Inspekcijski poslovi u oblasti izgradnje objekata", "plan": 0.36, "ost": 0.11, "diff": -0.25, "pct": 31.2, "yoy": -48.8, "mp": "18"}, {"code": "18 018 001", "name": "Stručni i operativni poslovi Ministarstva ekologije, od", "plan": 0.42, "ost": 0.25, "diff": -0.17, "pct": 58.9, "yoy": -15.4, "mp": "18"}, {"code": "18 010 001", "name": "Stručni i operativni poslovi Ministarstva prostornog pl", "plan": 0.32, "ost": 2.35, "diff": 2.03, "pct": 742.6, "yoy": 351.9, "mp": "18"}]}, {"code": "20", "name": "Kultura", "plan": 7.24, "ost": 5.11, "diff": -2.13, "pct": 70.6, "ch": [{"code": "20 020 003", "name": "Kreativna Crna Gora i projekti", "plan": 0.71, "ost": 0.02, "diff": -0.7, "pct": 2.3, "yoy": 246.3, "mp": "20"}, {"code": "20 020 002", "name": "Pozorišna, filmska i muzička djelatnost", "plan": 2.19, "ost": 1.64, "diff": -0.55, "pct": 75.0, "yoy": -7.6, "mp": "20"}, {"code": "20 021 K01", "name": "Izgradnja, rekonstrukcija i adaptacija objekata kulture", "plan": 0.59, "ost": 0.3, "diff": -0.29, "pct": 50.6, "yoy": 0, "mp": "20"}, {"code": "20 021 002", "name": "Muzejska djelatnost", "plan": 1.14, "ost": 0.95, "diff": -0.2, "pct": 82.7, "yoy": 4.1, "mp": "20"}, {"code": "20 021 006", "name": "Djelovanje Uprave za zaštitu kulturnih dobara", "plan": 0.35, "ost": 0.14, "diff": -0.2, "pct": 41.2, "yoy": -18.4, "mp": "20"}]}, {"code": "12", "name": "Pravosuđe i zaštita prava", "plan": 19.97, "ost": 18.36, "diff": -1.61, "pct": 91.9, "ch": [{"code": "12 012 001", "name": "Upravljanje sistemnom izvršenja krivičnih sankcija", "plan": 3.85, "ost": 3.13, "diff": -0.72, "pct": 81.3, "yoy": -1.7, "mp": "12"}, {"code": "12 024 K02", "name": "Projekti koji se finansiraju iz IPA fondova - sektor Pr", "plan": 0.93, "ost": 0.32, "diff": -0.61, "pct": 34.7, "yoy": 391.1, "mp": "12"}, {"code": "12 005 006", "name": "Nadležnost Specijalnog državnog tužilaštva", "plan": 0.78, "ost": 0.54, "diff": -0.24, "pct": 69.7, "yoy": 14.6, "mp": "12"}, {"code": "12 003 008", "name": "Nadležnost sudova za prekršaje", "plan": 1.44, "ost": 1.82, "diff": 0.38, "pct": 126.5, "yoy": 53.0, "mp": "12"}, {"code": "12 003 006", "name": "Nadležnost viših sudova", "plan": 1.41, "ost": 2.03, "diff": 0.62, "pct": 144.0, "yoy": 73.5, "mp": "12"}]}, {"code": "13", "name": "Javna bezbjednost i odbrana", "plan": 62.11, "ost": 61.23, "diff": -0.88, "pct": 98.6, "ch": [{"code": "13 015 002", "name": "Djelovanje Agencije za nacionalnu bezbjednost", "plan": 11.01, "ost": 3.71, "diff": -7.3, "pct": 33.7, "yoy": 23.1, "mp": "13"}, {"code": "13 027 001", "name": "Integrisano upravljanje granicom", "plan": 1.61, "ost": 0.15, "diff": -1.46, "pct": 9.5, "yoy": -8.2, "mp": "13"}, {"code": "13 028 002", "name": "Međunarodna saradnja", "plan": 1.3, "ost": 0.54, "diff": -0.76, "pct": 41.3, "yoy": -27.3, "mp": "13"}, {"code": "13 024 001", "name": "Poslovi iz oblasti rada policije", "plan": 22.95, "ost": 22.22, "diff": -0.73, "pct": 96.8, "yoy": 11.4, "mp": "13"}, {"code": "13 030 001", "name": "Opremanje i infrastruktura Vojske Crne Gore", "plan": 1.37, "ost": 14.47, "diff": 13.1, "pct": 1056.2, "yoy": 2841.6, "mp": "13"}]}, {"code": "14", "name": "Javne finansije", "plan": 163.0, "ost": 178.2, "diff": 15.2, "pct": 109.3, "ch": [{"code": "14 002 005", "name": "Rezerve", "plan": 21.53, "ost": 0.5, "diff": -21.03, "pct": 2.3, "yoy": -88.3, "mp": "14"}, {"code": "14 040 010", "name": "Djelovanje Fonda za obeštećenje", "plan": 1.28, "ost": 0.05, "diff": -1.23, "pct": 3.9, "yoy": 0.1, "mp": "14"}, {"code": "14 053 001", "name": "Stručni i operativni poslovi Uprave carina", "plan": 1.03, "ost": 0.52, "diff": -0.52, "pct": 49.8, "yoy": -41.2, "mp": "14"}, {"code": "14 043 001", "name": "Zajednički poslovi", "plan": 7.39, "ost": 17.54, "diff": 10.15, "pct": 237.2, "yoy": 48.0, "mp": "14"}, {"code": "14 005 002", "name": "Stručni i operativni poslovi u vezi sa javnim dugom", "plan": 114.1, "ost": 143.51, "diff": 29.41, "pct": 125.8, "yoy": 23.9, "mp": "14"}]}], "org": [{"code": "43701", "name": "Ministarstvo javnih radova", "plan": 38.43, "ost": 12.77, "diff": -25.65, "pct": 33.2, "yoy": 0}, {"code": "42703", "name": "Uprava za saobraćaj", "plan": 45.1, "ost": 30.64, "diff": -14.46, "pct": 67.9, "yoy": 138.4}, {"code": "50901", "name": "Agencija za nacionalnu bezbjednost", "plan": 11.01, "ost": 3.71, "diff": -7.3, "pct": 33.7, "yoy": 23.1}, {"code": "42901", "name": "Ministarstvo socijalnog staranja, brige o porodici", "plan": 73.51, "ost": 66.25, "diff": -7.26, "pct": 90.1, "yoy": -4.2}, {"code": "40701", "name": "Ministarstvo prosvjete, nauke i inovacija", "plan": 82.95, "ost": 77.01, "diff": -5.94, "pct": 92.8, "yoy": -0.9}, {"code": "60201", "name": "Fond za zdravstveno osiguranje", "plan": 126.35, "ost": 121.32, "diff": -5.03, "pct": 96.0, "yoy": 21.0}, {"code": "40301", "name": "Ministarstvo unutrašnjih poslova", "plan": 31.59, "ost": 28.14, "diff": -3.45, "pct": 89.1, "yoy": 6.9}, {"code": "41101", "name": "Ministarstvo poljoprivrede, šumarstva i vodoprivre", "plan": 5.53, "ost": 2.23, "diff": -3.3, "pct": 40.4, "yoy": -40.3}, {"code": "42704", "name": "Uprava za željeznice", "plan": 5.46, "ost": 2.62, "diff": -2.84, "pct": 48.0, "yoy": -34.3}, {"code": "60101", "name": "Fond penzijskog i invalidskog osiguranja", "plan": 208.23, "ost": 205.98, "diff": -2.25, "pct": 98.9, "yoy": 5.6}, {"code": "41301", "name": "Ministarstvo zdravlja", "plan": 2.42, "ost": 0.68, "diff": -1.75, "pct": 27.9, "yoy": -24.1}, {"code": "40901", "name": "Ministarstvo ekonomskog razvoja", "plan": 2.48, "ost": 0.79, "diff": -1.69, "pct": 31.8, "yoy": -42.5}, {"code": "42501", "name": "Ministarstvo energetike i rudarstva", "plan": 2.42, "ost": 0.75, "diff": -1.67, "pct": 30.9, "yoy": 0}, {"code": "40801", "name": "Ministarstvo kulture i medija", "plan": 5.73, "ost": 4.08, "diff": -1.65, "pct": 71.1, "yoy": -7.6}, {"code": "20101", "name": "Skupština Crne Gore", "plan": 4.26, "ost": 2.94, "diff": -1.32, "pct": 69.0, "yoy": 20.2}, {"code": "60501", "name": "Fond za obeštećenje", "plan": 1.28, "ost": 0.05, "diff": -1.23, "pct": 3.9, "yoy": 0.1}, {"code": "41106", "name": "Agencija za plaćanja u poljoprivredi, ruralnom raz", "plan": 2.3, "ost": 1.31, "diff": -0.99, "pct": 57.0, "yoy": 0}, {"code": "42001", "name": "Ministarstvo javne uprave", "plan": 2.06, "ost": 1.09, "diff": -0.97, "pct": 53.1, "yoy": -21.3}, {"code": "40202", "name": "Uprava za izvršenje krivičnih sankcija", "plan": 3.85, "ost": 3.13, "diff": -0.72, "pct": 81.3, "yoy": -1.7}, {"code": "40601", "name": "Ministarstvo vanjskih poslova", "plan": 6.84, "ost": 6.15, "diff": -0.69, "pct": 89.9, "yoy": 27.6}, {"code": "42701", "name": "Ministarstvo saobraćaja", "plan": 1.48, "ost": 0.89, "diff": -0.59, "pct": 60.3, "yoy": 33.0}, {"code": "40504", "name": "Uprava carina", "plan": 2.87, "ost": 2.35, "diff": -0.52, "pct": 81.8, "yoy": -8.3}, {"code": "30301", "name": "Tužilački savjet", "plan": 3.88, "ost": 3.37, "diff": -0.51, "pct": 86.9, "yoy": 26.7}, {"code": "41103", "name": "Uprava za gazdovanje šumama i lovištima", "plan": 1.79, "ost": 1.29, "diff": -0.5, "pct": 72.2, "yoy": -11.7}, {"code": "43501", "name": "Ministarstvo turizma", "plan": 0.92, "ost": 0.43, "diff": -0.5, "pct": 46.4, "yoy": -63.1}, {"code": "40503", "name": "Poreska uprava", "plan": 3.0, "ost": 2.54, "diff": -0.46, "pct": 84.5, "yoy": -1.8}, {"code": "43502", "name": "Nacionalna turistička organizacija", "plan": 0.69, "ost": 0.36, "diff": -0.33, "pct": 52.0, "yoy": -37.0}, {"code": "50301", "name": "Državna revizorska institucija", "plan": 0.85, "ost": 0.55, "diff": -0.3, "pct": 64.5, "yoy": -2.7}, {"code": "43401", "name": "Ministarstvo rada, zapošljavanja i socijalnog dija", "plan": 0.87, "ost": 0.6, "diff": -0.27, "pct": 69.1, "yoy": -5.7}, {"code": "43301", "name": "Ministarstvo ekologije, održivog razvoja i razvoja", "plan": 0.95, "ost": 0.71, "diff": -0.24, "pct": 74.9, "yoy": -38.7}, {"code": "40101", "name": "Generalni sekretarijat Vlade Crne Gore", "plan": 1.42, "ost": 1.2, "diff": -0.23, "pct": 84.2, "yoy": 1.0}, {"code": "42005", "name": "Agencija za sajber bezbjednost", "plan": 0.29, "ost": 0.06, "diff": -0.23, "pct": 22.2, "yoy": 0}, {"code": "10101", "name": "Služba Predsjednika Crne Gore", "plan": 0.6, "ost": 0.4, "diff": -0.21, "pct": 66.1, "yoy": -0.2}, {"code": "42002", "name": "Uprava za ljudske resurse", "plan": 0.48, "ost": 0.28, "diff": -0.21, "pct": 56.8, "yoy": -33.0}, {"code": "42801", "name": "Ministarstvo pomorstva", "plan": 0.53, "ost": 0.32, "diff": -0.21, "pct": 60.3, "yoy": -90.2}, {"code": "40817", "name": "Uprava za zaštitu kulturnih dobara", "plan": 0.35, "ost": 0.14, "diff": -0.2, "pct": 41.2, "yoy": -18.4}, {"code": "43101", "name": "Ministarstvo dijaspore", "plan": 0.3, "ost": 0.12, "diff": -0.18, "pct": 38.5, "yoy": -10.3}, {"code": "41503", "name": "Uprava za nekretnine", "plan": 1.66, "ost": 1.48, "diff": -0.17, "pct": 89.6, "yoy": 13.1}, {"code": "52001", "name": "Agencija za sprječavanje korupcije", "plan": 0.63, "ost": 0.48, "diff": -0.16, "pct": 75.5, "yoy": 4.1}, {"code": "40102", "name": "Kabinet Predsjednika Vlade", "plan": 0.37, "ost": 0.22, "diff": -0.15, "pct": 60.3, "yoy": 0.8}, {"code": "40201", "name": "Ministarstvo pravde", "plan": 0.96, "ost": 0.82, "diff": -0.14, "pct": 85.4, "yoy": 46.0}, {"code": "40510", "name": "Uprava za statistiku", "plan": 0.66, "ost": 0.52, "diff": -0.14, "pct": 78.8, "yoy": -3.9}, {"code": "41801", "name": "Ministarstvo evropskih poslova", "plan": 0.65, "ost": 0.51, "diff": -0.14, "pct": 79.1, "yoy": 26.2}, {"code": "43001", "name": "Ministarstvo regionalno-investicionog razvoja i sa", "plan": 0.29, "ost": 0.15, "diff": -0.14, "pct": 52.7, "yoy": -14.0}, {"code": "40514", "name": "Uprava za igre na sreću", "plan": 0.25, "ost": 0.12, "diff": -0.13, "pct": 47.8, "yoy": 13.9}, {"code": "43303", "name": "Zavod za hidrometeorologiju i seizmologiju", "plan": 0.53, "ost": 0.41, "diff": -0.12, "pct": 77.3, "yoy": -13.5}, {"code": "30101", "name": "Ustavni sud Crne Gore", "plan": 0.4, "ost": 0.29, "diff": -0.11, "pct": 71.9, "yoy": 11.9}, {"code": "42802", "name": "Uprava pomorske sigurnosti i upravljanja lukama", "plan": 0.35, "ost": 0.24, "diff": -0.11, "pct": 69.2, "yoy": -18.0}, {"code": "40802", "name": "Državni arhiv", "plan": 0.57, "ost": 0.47, "diff": -0.1, "pct": 82.5, "yoy": -11.3}, {"code": "30401", "name": "Centar za obuku u sudstvu i državnom tužilaštvu", "plan": 0.23, "ost": 0.14, "diff": -0.09, "pct": 61.9, "yoy": -7.4}, {"code": "40204", "name": "Centar za alternativno rješavanje sporova", "plan": 0.17, "ost": 0.07, "diff": -0.09, "pct": 44.4, "yoy": -35.5}, {"code": "43302", "name": "Agencija za zaštitu prirode i životne sredine", "plan": 0.73, "ost": 0.64, "diff": -0.09, "pct": 88.1, "yoy": 66.0}, {"code": "20102", "name": "Državna izborna komisija", "plan": 0.12, "ost": 0.03, "diff": -0.08, "pct": 29.9, "yoy": -64.4}, {"code": "40516", "name": "Agencija za investicije", "plan": 0.21, "ost": 0.13, "diff": -0.08, "pct": 61.7, "yoy": -15.7}, {"code": "40704", "name": "Zavod za školstvo", "plan": 0.45, "ost": 0.36, "diff": -0.08, "pct": 81.2, "yoy": 0.6}, {"code": "40904", "name": "Zavod za metrologiju", "plan": 0.33, "ost": 0.24, "diff": -0.08, "pct": 74.8, "yoy": -11.9}, {"code": "40103", "name": "Savjet za privatizaciju i kapitalne projekte", "plan": 0.14, "ost": 0.07, "diff": -0.07, "pct": 50.6, "yoy": -30.5}, {"code": "41401", "name": "Ministarstvo ljudskih i manjinskih prava", "plan": 0.69, "ost": 0.63, "diff": -0.07, "pct": 90.5, "yoy": 21.5}, {"code": "40402", "name": "Direkcija za zaštitu tajnih podatka", "plan": 0.19, "ost": 0.12, "diff": -0.06, "pct": 65.3, "yoy": -6.8}, {"code": "41104", "name": "Uprava za vode", "plan": 0.15, "ost": 0.09, "diff": -0.06, "pct": 58.9, "yoy": -43.4}, {"code": "41507", "name": "Uprava za legalizaciju bespravnih objekata", "plan": 0.08, "ost": 0.01, "diff": -0.06, "pct": 18.5, "yoy": 0}, {"code": "42502", "name": "Uprava za ugljovodonike", "plan": 0.13, "ost": 0.07, "diff": -0.06, "pct": 54.0, "yoy": 0}, {"code": "50201", "name": "Zaštitnik ljudskih prava i sloboda", "plan": 0.22, "ost": 0.15, "diff": -0.06, "pct": 71.5, "yoy": -12.1}, {"code": "52901", "name": "Fiskalni savjet", "plan": 0.05, "ost": 0.0, "diff": -0.05, "pct": 0.0, "yoy": 0}, {"code": "40515", "name": "Zaštitnik imovinsko-pravnih interesa Crne Gore", "plan": 0.3, "ost": 0.26, "diff": -0.04, "pct": 85.8, "yoy": 2.1}, {"code": "40709", "name": "Centar za stručno obrazovanje", "plan": 0.19, "ost": 0.15, "diff": -0.04, "pct": 78.1, "yoy": 10.6}, {"code": "40911", "name": "Agencija za zaštitu konkurencije", "plan": 0.22, "ost": 0.18, "diff": -0.04, "pct": 81.6, "yoy": -3.5}, {"code": "50401", "name": "Crnogorska akademija nauka i umjetnosti", "plan": 0.67, "ost": 0.63, "diff": -0.04, "pct": 94.1, "yoy": 30.7}, {"code": "52301", "name": "Komisija za zaštitu prava u postupcima javnih naba", "plan": 0.13, "ost": 0.09, "diff": -0.04, "pct": 66.9, "yoy": -0.0}, {"code": "52601", "name": "Fond za zaštitu i ostvarivanje manjinskih prava", "plan": 0.12, "ost": 0.08, "diff": -0.04, "pct": 65.6, "yoy": -13.2}, {"code": "40105", "name": "Sekretarijat za zakonodavstvo", "plan": 0.12, "ost": 0.1, "diff": -0.03, "pct": 77.2, "yoy": 0.6}, {"code": "40710", "name": "Agencija za kontrolu i obezbjeđenje kvaliteta viso", "plan": 0.11, "ost": 0.08, "diff": -0.03, "pct": 71.2, "yoy": -11.0}, {"code": "40913", "name": "Institut za standardizaciju", "plan": 0.18, "ost": 0.14, "diff": -0.03, "pct": 81.0, "yoy": 15.3}, {"code": "42902", "name": "Zavod za socijalnu i dječiju zaštitu", "plan": 0.11, "ost": 0.08, "diff": -0.03, "pct": 74.9, "yoy": -15.2}, {"code": "51301", "name": "Agencija za mirno rješavanje radnih sporova", "plan": 0.11, "ost": 0.07, "diff": -0.03, "pct": 68.7, "yoy": -28.3}, {"code": "42705", "name": "Nacionalna komisija za istraživanje nesreća i ozbi", "plan": 0.02, "ost": 0.0, "diff": -0.02, "pct": 11.1, "yoy": -73.1}, {"code": "51601", "name": "Revizorsko tijelo", "plan": 0.14, "ost": 0.12, "diff": -0.02, "pct": 82.7, "yoy": -5.8}, {"code": "51901", "name": "Regionalni ronilački centar za podvodno deminiranj", "plan": 0.11, "ost": 0.08, "diff": -0.02, "pct": 78.0, "yoy": -11.7}, {"code": "52401", "name": "Službeni list Crne Gore", "plan": 0.07, "ost": 0.05, "diff": -0.02, "pct": 73.6, "yoy": 72.5}, {"code": "43402", "name": "Socijalni savjet", "plan": 0.02, "ost": 0.01, "diff": -0.01, "pct": 58.3, "yoy": 20.0}, {"code": "51401", "name": "Senat Prijestonice", "plan": 0.02, "ost": 0.02, "diff": -0.01, "pct": 66.2, "yoy": -2.6}, {"code": "20105", "name": "Savjet za građansku kontrolu rada policije", "plan": 0.01, "ost": 0.01, "diff": 0.0, "pct": 104.3, "yoy": -0.9}, {"code": "40116", "name": "Komisija za koncesije", "plan": 0.01, "ost": 0.0, "diff": -0.0, "pct": 56.4, "yoy": -48.5}, {"code": "40122", "name": "Savjet za NATO", "plan": 0.0, "ost": 0.0, "diff": -0.0, "pct": 0.0, "yoy": 0}, {"code": "40705", "name": "Ispitni centar", "plan": 0.46, "ost": 0.46, "diff": -0.0, "pct": 99.1, "yoy": 33.3}, {"code": "50801", "name": "Matica crnogorska", "plan": 0.14, "ost": 0.14, "diff": 0.0, "pct": 100.0, "yoy": 62.6}, {"code": "51101", "name": "Crveni krst Crne Gore", "plan": 0.1, "ost": 0.1, "diff": 0.0, "pct": 100.0, "yoy": 128.0}, {"code": "51801", "name": "Javno preduzeće Radio i Televizija Crne Gore", "plan": 5.4, "ost": 5.4, "diff": 0.0, "pct": 100.0, "yoy": 12.1}, {"code": "41107", "name": "Uprava za bezbjednost hrane, veterinu i fitosanita", "plan": 0.96, "ost": 1.01, "diff": 0.06, "pct": 105.9, "yoy": 3.8}, {"code": "51001", "name": "Agencija za zaštitu ličnih podataka i slobodan pri", "plan": 0.29, "ost": 0.35, "diff": 0.06, "pct": 119.5, "yoy": 91.9}, {"code": "60601", "name": "Fond rada", "plan": 0.22, "ost": 0.36, "diff": 0.14, "pct": 162.7, "yoy": 53.6}, {"code": "42101", "name": "Ministarstvo sporta i mladih", "plan": 3.58, "ost": 4.23, "diff": 0.65, "pct": 118.1, "yoy": -21.3}, {"code": "30201", "name": "Sudski savjet", "plan": 8.29, "ost": 9.04, "diff": 0.75, "pct": 109.0, "yoy": 32.1}, {"code": "41501", "name": "Ministarstvo prostornog planiranja, urbanizma i dr", "plan": 2.64, "ost": 4.06, "diff": 1.41, "pct": 153.5, "yoy": 137.2}, {"code": "60301", "name": "Zavod za zapošljavanje", "plan": 15.0, "ost": 17.5, "diff": 2.5, "pct": 116.7, "yoy": 2.1}, {"code": "40501", "name": "Ministarstvo finansija", "plan": 151.52, "ost": 160.09, "diff": 8.57, "pct": 105.7, "yoy": 21.0}, {"code": "41505", "name": "Uprava za državnu imovinu", "plan": 8.08, "ost": 18.09, "diff": 10.01, "pct": 223.8, "yoy": 46.3}, {"code": "40401", "name": "Ministarstvo odbrane", "plan": 17.75, "ost": 28.18, "diff": 10.43, "pct": 158.8, "yoy": 92.7}]};
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
 
-let t0=Date.now();const dps=124.04e6/(90*24*3600*1000);
-function tk(){const e=Date.now()-t0,a=e*dps;document.getElementById('ctr').textContent=a.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';requestAnimationFrame(tk)}
-tk();
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-const mx=340;
-function mb2(id,k,c){const el=document.getElementById(id);[{m:'Jan',rev:162.65,exp:195.89},{m:'Feb',rev:191.92,exp:240.44},{m:'Mar',rev:280.72,exp:322.98}].forEach(d=>{el.innerHTML+=`<div class="mbr"><span>${d.m}</span><div class="mbt"><div class="mbf" style="width:${(d[k]/mx*100).toFixed(1)}%;background:var(--${c})"></div></div><span style="color:var(--${c})">${d[k].toFixed(0)}</span></div>`})}
-mb2('rb','rev','g');mb2('eb','exp','r');
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-(function(){
-const dk=matchMedia('(prefers-color-scheme:dark)').matches;
-const cs=[{n:"Socijalna zaštita",c:35,cl:dk?'#4ADE6F':'#1A8C42'},{n:"Opšte javne službe",c:27,cl:dk?'#BF5AF2':'#7B3FA0'},{n:"Zdravstvo",c:16,cl:dk?'#FF6482':'#C23A55'},{n:"Obrazovanje",c:10,cl:dk?'#FF6B63':'#C44038'},{n:"Ekonomski poslovi",c:8,cl:dk?'#5BA3F5':'#1D6FD1'},{n:"Javni red",c:6,cl:dk?'#F5A623':'#C47B10'},{n:"Odbrana",c:4,cl:dk?'#64D2FF':'#2196BA'}];
-let u=cs.reduce((a,b)=>a+b.c,0),sc=100/u;cs.forEach(a=>a.c=Math.round(a.c*sc));
-let df=100-cs.reduce((a,b)=>a+b.c,0);cs[0].c+=df;
-const w=document.getElementById('waf');cs.forEach(cat=>{for(let i=0;i<cat.c;i++){const d=document.createElement('div');d.className='wc';d.style.background=cat.cl;d.title=cat.n;w.appendChild(d)}});
-const l=document.getElementById('wfl');cs.forEach(cat=>{l.innerHTML+=`<div class="wfl-i"><div class="wfl-d" style="background:${cat.cl}"></div>${cat.n} ${cat.c}%</div>`});
-})();
+  // ============ KONTAKT FORMA ============
+  // Šalje strukturisanu poruku na office@fidelityconsulting.me
+  // preko korisnikovog mejl klijenta (mailto). Bez backend-a, radi odmah.
+  const form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
 
-(function(){
-const dk=matchMedia('(prefers-color-scheme:dark)').matches;
-const items=[{n:"Otpl. obaveza preth.",q:111.2},{n:"Kupovina HoV",q:43.3},{n:"Kamate",q:41.1},{n:"Pozajmice",q:36.8},{n:"Zdrav. (prava)",q:29.1},{n:"Zdrav. osig.",q:28.8},{n:"Lična primanja",q:26.2},{n:"PIO",q:24.5},{n:"Bruto zarade",q:24.4},{n:"Soc. zaštita",q:24.3},{n:"Tekući izdaci",q:23.5},{n:"Transferi inst.",q:21.3},{n:"Subvencije",q:19.4},{n:"Otplata dugova",q:18.2},{n:"Kapital. izdaci",q:15.9},{n:"Usluge",q:13.7},{n:"Tek. održavanje",q:6.8},{n:"Rezerve",q:1.5}];
-const el=document.getElementById('gg'),max=55;
-items.forEach(d=>{const w=Math.min(d.q/max*100,100),col=d.q>35?'var(--r)':d.q>25?'var(--amber)':'var(--g)',bg=d.q>35?'var(--rbar)':d.q>25?'var(--amberbg)':'var(--gbar)',mp=(25/max*100);
-el.innerHTML+=`<div class="gr"><div class="gr-l">${d.n}</div><div class="gr-t"><div class="gr-f" style="width:${w}%;background:${bg};border-right:2px solid ${col};border-radius:9px"></div><div class="gr-mk" style="left:${mp}%"><span>25%</span></div></div><div class="gr-p" style="color:${col}">${d.q.toFixed(1)}%</div></div>`});
-})();
+      const name = document.getElementById('name').value.trim();
+      const company = document.getElementById('company').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const interest = document.getElementById('interest').value;
+      const message = document.getElementById('message').value.trim();
 
-function bH(d,mx,sm){const w=Math.min(Math.abs(d)/mx*50,50),n=d<0,c=n?'n':'p',s=sm?' bs':'',st=n?`right:50%;width:${w}%`:`left:50%;width:${w}%`,sg=d>=0?'+':'',vs=n?`right:${50+w+.5}%;text-align:right`:`left:${50+w+.5}%`;return`<div class="bc"><div class="bm"></div>${w>0.1?`<div class="b ${c}${s}" style="${st}"></div>`:''}<div class="bv ${c}" style="${vs}">${sg}${d.toFixed(1)}</div></div>`}
-function yH(y){if(!y||y===0)return'<div class="rp">—</div>';const c=y>=0?'var(--g)':'var(--r)',s=y>=0?'+':'';return`<div class="ry" style="color:${c}">${s}${y.toFixed(0)}%</div>`}
+      // Validacija osnovnih polja
+      const errors = [];
+      if (!name) errors.push('Ime i prezime');
+      if (!company) errors.push('Kompanija');
+      if (!email) errors.push('E-mail');
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push('Validan e-mail');
 
-(function(){const el=document.getElementById('fk'),mx=42;let h='';D.funk.forEach(p=>{const g='fk_'+p.code;h+=`<div class="dg cl" id="${g}"><div class="dp" onclick="document.getElementById('${g}').classList.toggle('cl')"><div class="dn"><span class="ar">▾</span>${p.code} ${p.name}</div>${bH(p.diff,mx,0)}<div class="rp">${p.pct.toFixed(0)}%</div>${yH(p.yoy)}</div><div class="dch">`;(p.ch||[]).forEach(c=>{if(c.ch4&&c.ch4.length>0&&c.plan>0.5){const sg='fk_'+c.code;h+=`<div class="dg cl" id="${sg}"><div class="dc" onclick="document.getElementById('${sg}').classList.toggle('cl')" style="cursor:pointer"><div class="dn"><span class="ar" style="font-size:8px">▾</span> ${c.code} ${c.name}</div>${bH(c.diff,mx,1)}<div class="rp">${c.pct.toFixed(0)}%</div>${yH(c.yoy)}</div><div class="dch">`;c.ch4.forEach(c4=>{h+=`<div class="dc dc4"><div class="dn">${c4.code} ${c4.name}</div>${bH(c4.diff,mx,1)}<div class="rp">${c4.pct.toFixed(0)}%</div>${yH(c4.yoy)}</div>`});h+=`</div></div>`}else{h+=`<div class="dc"><div class="dn">${c.code} ${c.name}</div>${bH(c.diff,mx,1)}<div class="rp">${c.pct.toFixed(0)}%</div>${yH(c.yoy)}</div>`}});h+=`</div></div>`});el.innerHTML=h})();
+      if (errors.length) {
+        showStatus('Molimo popunite: ' + errors.join(', '), 'error');
+        return;
+      }
 
-(function(){const el=document.getElementById('pk'),mx=28;let h='';D.prog.forEach(p=>{const g='pk_'+p.code;h+=`<div class="dg cl" id="${g}"><div class="dp" onclick="document.getElementById('${g}').classList.toggle('cl')"><div class="dn"><span class="ar">▾</span>${p.code} ${p.name}</div>${bH(p.diff,mx,0)}<div class="rp">${p.pct.toFixed(0)}%</div><div class="rp"></div></div><div class="dch">`;(p.ch||[]).forEach(c=>{h+=`<div class="dc"><div class="dn" title="${c.code} ${c.name}">${c.name}</div>${bH(c.diff,mx,1)}<div class="rp">${c.pct.toFixed(0)}%</div>${yH(c.yoy)}</div>`});h+=`</div></div>`});el.innerHTML=h})();
+      // Gradi mejl
+      const subject = 'Upit sa sajta — ' + company;
+      const body =
+        'Ime: ' + name + '\n' +
+        'Kompanija: ' + company + '\n' +
+        'E-mail: ' + email + '\n' +
+        'Telefon: ' + (phone || '—') + '\n' +
+        'Oblast interesovanja: ' + interest + '\n\n' +
+        '── Poruka ──\n' +
+        (message || '(bez poruke)') + '\n\n' +
+        '── Poslato preko fidelityconsulting.me ──';
 
-(function(){const t=document.getElementById('ot');let h='<thead><tr><th>Potrošačka jedinica</th><th>Kod</th><th>Plan</th><th>Ost.</th><th>+/−</th><th>%</th><th>YoY</th></tr></thead><tbody>';D.org.forEach(o=>{const dc=o.diff>=0?'var(--g)':'var(--r)',s=o.diff>=0?'+':'',yc=o.yoy>=0?'var(--g)':'var(--r)',ys=o.yoy>=0?'+':'';h+=`<tr><td>${o.name}</td><td style="font-family:var(--mono);font-size:10px;color:var(--th)">${o.code}</td><td>${o.plan.toFixed(1)}</td><td style="font-weight:700">${o.ost.toFixed(1)}</td><td style="color:${dc};font-weight:700">${s}${o.diff.toFixed(1)}</td><td>${o.pct.toFixed(0)}%</td><td style="color:${yc}">${o.yoy?ys+o.yoy.toFixed(0)+'%':'—'}</td></tr>`});h+='</tbody>';t.innerHTML=h})();
+      const mailto = 'mailto:office@fidelityconsulting.me'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
 
-function tg(id){const gs=document.querySelectorAll('#'+id+' .dg');const ac=[...gs].every(g=>g.classList.contains('cl'));gs.forEach(g=>{ac?g.classList.remove('cl'):g.classList.add('cl')})}
+      // Otvara mejl klijent
+      window.location.href = mailto;
+
+      // Pokazuje uspjeh sa fallback opcijama
+      showStatus(
+        'Otvara se vaš mejl program sa unaprijed popunjenom porukom. ' +
+        'Ako se ne otvori, pošaljite direktno na office@fidelityconsulting.me ili pozovite +382 67 52 57 74.',
+        'success'
+      );
+      form.reset();
+    });
+  }
+
+  function showStatus(msg, type) {
+    let box = document.getElementById('form-status');
+    if (!box) {
+      box = document.createElement('div');
+      box.id = 'form-status';
+      box.style.cssText = 'margin-top: 20px; padding: 16px 20px; border-radius: 4px; font-size: 14px; line-height: 1.6;';
+      form.appendChild(box);
+    }
+    if (type === 'error') {
+      box.style.background = '#FCEEEB';
+      box.style.color = '#B8341B';
+      box.style.border = '1px solid #F5C9C0';
+    } else {
+      box.style.background = '#EAF5EE';
+      box.style.color = '#1F5934';
+      box.style.border = '1px solid #C5E2CF';
+    }
+    box.textContent = msg;
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 </script>
+
+</body>
+</html>
+-40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ============ KONTAKT FORMA ============
+  // Šalje strukturisanu poruku na office@fidelityconsulting.me
+  // preko korisnikovog mejl klijenta (mailto). Bez backend-a, radi odmah.
+  const form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const company = document.getElementById('company').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const interest = document.getElementById('interest').value;
+      const message = document.getElementById('message').value.trim();
+
+      // Validacija osnovnih polja
+      const errors = [];
+      if (!name) errors.push('Ime i prezime');
+      if (!company) errors.push('Kompanija');
+      if (!email) errors.push('E-mail');
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push('Validan e-mail');
+
+      if (errors.length) {
+        showStatus('Molimo popunite: ' + errors.join(', '), 'error');
+        return;
+      }
+
+      // Gradi mejl
+      const subject = 'Upit sa sajta — ' + company;
+      const body =
+        'Ime: ' + name + '\n' +
+        'Kompanija: ' + company + '\n' +
+        'E-mail: ' + email + '\n' +
+        'Telefon: ' + (phone || '—') + '\n' +
+        'Oblast interesovanja: ' + interest + '\n\n' +
+        '── Poruka ──\n' +
+        (message || '(bez poruke)') + '\n\n' +
+        '── Poslato preko fidelityconsulting.me ──';
+
+      const mailto = 'mailto:office@fidelityconsulting.me'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+
+      // Otvara mejl klijent
+      window.location.href = mailto;
+
+      // Pokazuje uspjeh sa fallback opcijama
+      showStatus(
+        'Otvara se vaš mejl program sa unaprijed popunjenom porukom. ' +
+        'Ako se ne otvori, pošaljite direktno na office@fidelityconsulting.me ili pozovite +382 67 52 57 74.',
+        'success'
+      );
+      form.reset();
+    });
+  }
+
+  function showStatus(msg, type) {
+    let box = document.getElementById('form-status');
+    if (!box) {
+      box = document.createElement('div');
+      box.id = 'form-status';
+      box.style.cssText = 'margin-top: 20px; padding: 16px 20px; border-radius: 4px; font-size: 14px; line-height: 1.6;';
+      form.appendChild(box);
+    }
+    if (type === 'error') {
+      box.style.background = '#FCEEEB';
+      box.style.color = '#B8341B';
+      box.style.border = '1px solid #F5C9C0';
+    } else {
+      box.style.background = '#EAF5EE';
+      box.style.color = '#1F5934';
+      box.style.border = '1px solid #C5E2CF';
+    }
+    box.textContent = msg;
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+
 </body>
 </html>
